@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for proyect",
+  "main": "node ./src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cor22982/Proyecto_Restaurante.git"
+  },
+  "author": "Grupo2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cor22982/Proyecto_Restaurante/issues"
+  },
+  "homepage": "https://github.com/cor22982/Proyecto_Restaurante#readme",
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.0.1",
+    "pg": "^8.11.3"
+  }
+}
