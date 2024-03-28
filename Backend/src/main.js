@@ -21,11 +21,12 @@ app.use(cors())
 app.get('/personal', async (req, res) => {
   try {
     const personal = await getAllPersonal()
-    res.status(200).json(personal)
+    res.status(200).json({ data: personal }) // Se agrega el campo "data" para mostrar los datos
   } catch (error) {
-    res.status(500).json({ error: error.message })
+    res.status(500).json({ error: error.message }) // Si hay un error, se muestra el mensaje de error
   }
 })
+
 
 const PORT = 3000
 app.listen(PORT, () => {
