@@ -20,7 +20,7 @@ app.use(cors())
 
 app.get('/personal', async (req, res) => {
   try {
-    const personal = await getAllPosts()
+    const personal = await getAllPersonal()
     res.status(200).json(personal)
   } catch (error) {
     res.status(500).json({ error: error.message })
