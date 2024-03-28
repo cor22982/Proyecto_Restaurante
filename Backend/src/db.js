@@ -2,12 +2,12 @@
 import conn from './conn.js'
 
 export async function getAllPersonal() {
-  console.log(conn)
   try {
-    const [rows] = await conn.query('select * from personal;')
-    return rows
+    const result = await conn.query('SELECT 1;');
+    console.log('Connection to PostgreSQL is active.');
+    return true;
   } catch (error) {
-    console.error('Error en getAllPersonal:', error)
-    throw error // Relanza el error para que sea manejado por el código que llama a getAllPersonal
+    console.error('Error checking connection to PostgreSQL:', error);
+    return false;
   }
 }
