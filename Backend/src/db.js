@@ -2,6 +2,7 @@
 import conn from './conn.js'
 
 export async function getAllPersonal() {
+  console.log(conn)
   try {
     const [rows] = await conn.query('select * from personal;')
     return rows
