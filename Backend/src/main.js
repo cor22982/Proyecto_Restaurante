@@ -21,10 +21,8 @@ app.use(cors())
 app.get('/personal', async (req, res) => {
   try {
     const personal = await getAllPersonal()
-    console.log(personal)
     res.status(200).json({ data: personal }) // Se agrega el campo "data" para mostrar los datos
   } catch (error) {
-    console.log(personal)
     res.status(500).json({ error: error.message }) // Si hay un error, se muestra el mensaje de error
   }
 })
