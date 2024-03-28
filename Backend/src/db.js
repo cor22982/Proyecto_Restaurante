@@ -4,8 +4,10 @@ import conn from './conn.js'
 export async function getAllPersonal() {
   try {
     const result = await conn.query('SELECT * FROM areas;');
-    console.log('Connection to PostgreSQL is active.');
-    console.log(result)
+    result.then(response => {
+      console.log(response.rows)
+      client.end()
+    })
     return true;
   } catch (error) {
     console.error('Error checking connection to PostgreSQL:', error);
