@@ -23,7 +23,14 @@ app.get('/personal', async (req, res) => {
     const personal = await getAllPersonal()
     res.status(200).json({ data: personal }) // Se agrega el campo "data" para mostrar los datos
   } catch (error) {
-    res.status(500).json({ error: error.message }) // Si hay un error, se muestra el mensaje de error
+    res.status(500).json({ 
+      error: {
+        message: error.message, // Mensaje de error
+        name: error.name,       // Tipo de error
+        stack: error.stack      // Pila de llamadas
+        // Puedes agregar más detalles según sea necesario
+      }
+    })
   }
 })
 
