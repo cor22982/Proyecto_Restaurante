@@ -4,9 +4,7 @@ import conn from './conn.js'
 export async function getAllPersonal() {
   try {
     const result = await conn.query('SELECT * FROM personal;');
-    console.log('Connection to PostgreSQL is active.');
-    console.log(result.rows);
-    return true;
+    return result.rows;
   } catch (error) {
     console.error('Error checking connection to PostgreSQL:', error);
     return false;

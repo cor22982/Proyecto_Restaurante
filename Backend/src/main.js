@@ -21,7 +21,7 @@ app.use(cors())
 app.get('/personal', async (req, res) => {
   try {
     const personal = await getAllPersonal()
-    res.status(200).json({ data: personal }) // Se agrega el campo "data" para mostrar los datos
+    res.status(200).json(pesonal) // Se agrega el campo "data" para mostrar los datos
   } catch (error) {
     res.status(500).json({ 
       error: {
