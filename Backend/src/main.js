@@ -2,7 +2,9 @@ import express from 'express'
 import { validationResult } from 'express-validator'
 import cors from 'cors'
 import {
-  getAllPersonal
+  getAllPersonal,
+  register,
+  login
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -49,6 +51,22 @@ app.post('/register', async (req, res) => {
   const { username, password,rol } = req.body
   await register(username, password,rol)
   res.send('{ "message": "user created" }')
+})
+
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body
+  console.log('usernameloged: ', username)
+  
+  const success = await login(username, password)
+  console.log('success', success)
+  if (success) {
+    res.status(200)
+    res.send('{ "message": "user logged in" }')
+    return
+  }
+
+  res.status(401)
+  res.send('{ "message": "not logged in" }')
 })
 
 
