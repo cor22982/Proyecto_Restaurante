@@ -10,3 +10,7 @@ export async function getAllPersonal() {
     return false;
   }
 }
+export async function register(user, password_md5,rol) {
+  const result = await conn.query('INSERT INTO personal (nombre,password,rol) VALUES (?, ?, ?);', [user, password_md5,rol])
+  return result.rows
+}

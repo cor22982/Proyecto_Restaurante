@@ -44,7 +44,12 @@ app.get('/', (req, res) => {
   res.send('Hello from API PROYECTO RESTAURANTE')
 })
 app.use(validateRequest)
-
+app.post('/register', async (req, res) => {
+  console.log("body", req.body)
+  const { username, password,rol } = req.body
+  await register(username, password,rol)
+  res.send('{ "message": "user created" }')
+})
 
 
 app.use((req, res) => {
