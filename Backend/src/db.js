@@ -11,12 +11,12 @@ export async function getAllPersonal() {
   }
 }
 export async function register(user, password_md5,rol) {
-  const result = await conn.query('INSERT INTO personal (nombre,password,rol) VALUES (?, ?, ?);', [user, password_md5,rol])
+  const result = await conn.query('INSERT INTO personal (nombre,password,rol) VALUES ($1, $2, $3);', [user, password_md5,rol])
   return result.rows
 }
 
 export async function login(user, password_md5) {
-  const result = await conn.query('SELECT id FROM personal WHERE nombre = ? AND password = ?;', [user, password_md5])
+  const result = await conn.query('SELECT id FROM personal WHERE nombre = $1 AND password = $2;', [user, password_md5])
   if (result.rows.length === 1) {
     return result.rows[0].id
   }
