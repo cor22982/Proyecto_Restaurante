@@ -18,7 +18,7 @@ export async function register(user, password_md5,rol) {
 export async function login(user, password_md5) {
   const result = await conn.query('SELECT id FROM personal WHERE nombre = $1 AND password = $2;', [user, password_md5])
   if (result.rows.length === 1) {
-    console.log(result.rows.length);
+    
     return result.rows[0].id
     
   }
