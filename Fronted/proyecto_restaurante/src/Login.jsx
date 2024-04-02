@@ -6,7 +6,7 @@ import ButtonCustom from './ButtonCustom';
 const Login = () =>{
   return ( 
     <div className="wrapper">
-      <h1>Login</h1>
+      <h1>Iniciar Sesion</h1>
       <TextInput icono={faUser} placeholder="Usuario" type="text" />
       <TextInput icono={faLock} placeholder="Constraseña" type="password" />
       <ButtonCustom type='submit' nombre='Iniciar Sesion'></ButtonCustom>
