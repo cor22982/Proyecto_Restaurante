@@ -1,5 +1,17 @@
-:root {
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url(../src/assets/interior-restaurante.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
-  background-color: #242424;
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif; 
 }
