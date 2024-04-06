@@ -1,8 +1,8 @@
 import React from 'react';
 import './Login.css';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
-import TextInput from './TextInput';
-import ButtonCustom from './ButtonCustom';
+import TextInput from '../Components/TextInput';
+import ButtonCustom from '../Components/ButtonCustom';
 const Login = () =>{
   return ( 
     <div className="wrapper">
