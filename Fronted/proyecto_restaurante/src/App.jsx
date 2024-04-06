@@ -4,7 +4,7 @@ import Login from './LoginAndRegister/Login'
 function App() {
  
   return (
-    <Register/>
+    <Login/>
   )
 }
 
