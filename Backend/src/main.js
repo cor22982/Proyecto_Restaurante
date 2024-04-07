@@ -3,7 +3,9 @@ import { validationResult } from 'express-validator'
 import cors from 'cors'
 import {
   register,
-  login
+  login,
+  getFoodData,
+  getFoodPrice
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -70,6 +72,30 @@ app.post('/login', async (req, res) => {
 
   res.status(401)
   res.send('{ "message": "not logged in" }')
+})
+
+app.get('/foodData', async (req, res) => {
+  try{
+    const result = await getFoodData()
+    res.status(200)
+    res.json(result.rows)
+  }
+  catch(e){
+    console.error('Error de servidor :(', e)
+    res.status(500)
+    res.send({error: 'Error de servidor:('})
+  }
+})
+
+app.get('/foodData', async (req, res) => {
+  try{
+    const result = await getFoodPrice()
+    res.status(200).json(result.rows)
+  }
+  catch(e){
+    console.error('Error de servidor :(', e)
+    res.status(500).send({error: 'Error con el servidor :('})
+  }
 })
 
 
