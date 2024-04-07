@@ -2,7 +2,6 @@ import express from 'express'
 import { validationResult } from 'express-validator'
 import cors from 'cors'
 import {
-  getAllPersonal,
   register,
   login
 // eslint-disable-next-line import/extensions
