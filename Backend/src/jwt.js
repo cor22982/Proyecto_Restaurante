@@ -17,9 +17,10 @@ const validateToken = (token) => {
 
 const decodeToken = (token) => {
   try{
-    const decode = jwt.decode(token)
-  }catch (error) {
-    return null
+    return jwt.decode(token);
+  } catch (error) {
+    console.error('Error decoding token:', error);
+    return null;
   }
 }
 
