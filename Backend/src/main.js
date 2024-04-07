@@ -87,7 +87,7 @@ app.get('/foodData', async (req, res) => {
   }
 })
 
-app.get('/foodData', async (req, res) => {
+app.get('/foodPrice', async (req, res) => {
   try{
     const result = await getFoodPrice()
     res.status(200).json(result.rows)
