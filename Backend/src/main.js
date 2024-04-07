@@ -45,9 +45,9 @@ app.post('/login', async (req, res) => {
   const success = await login(username, password)
   console.log('success', success)
   if (success) {
-    const user = () {
-      username,
-      rol = success.rol
+    const user =  {
+      username: username,
+      rol: success.rol
     }
     const token = generateToken(user)
     res.status(200)
