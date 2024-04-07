@@ -3,6 +3,7 @@ import './Login.css';
 import { md5 } from 'js-md5'
 import { useState } from 'react'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import TextInput from '../Components/TextInput';
 import ButtonCustom from '../Components/ButtonCustom';
 const Login = ({setAccessToken,setLoggedIn}) =>{
@@ -66,6 +67,10 @@ const Login = ({setAccessToken,setLoggedIn}) =>{
         value={formState.password} 
         onChange={(value)=> setValue('password',value)}
         />
+
+      <p style={{ fontSize: '20px' }}>
+          ¿No te has registrado aún? <Link to="/register" style={{ fontSize: '30px', fontWeight: 'bold' }}>Regístrate aquí</Link>
+      </p>
       <ButtonCustom 
         type='submit' 
         nombre='Iniciar Sesion'

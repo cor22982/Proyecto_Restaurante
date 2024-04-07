@@ -38,10 +38,12 @@ const Register = () =>{
     if (response.ok) {
       console.log('success!')
       setErrorMessage('')
+      window.location.href = '/login';
       return
     }else{
       setErrorMessage('Esta intentando ingresar a un usuario no admitido')
     }
+    
   }
 
 
@@ -77,7 +79,7 @@ const Register = () =>{
       <ButtonCustom 
         type='submit' 
         nombre='Registrarse'
-        onClick={click}></ButtonCustom>
+        onClick={click }></ButtonCustom>
     </div>
   );
 }
