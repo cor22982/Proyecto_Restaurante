@@ -24,7 +24,7 @@ function App() {
     <Router>
       <Routes>
         <Route
-          path="/login"
+          path="/"
           element={ loggedin ? <Initial/>:<Login setAccessToken={setAccessToken} setLoggedIn={setLoggedIn}/>}
         />
         <Route

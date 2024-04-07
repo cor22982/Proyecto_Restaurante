@@ -7,7 +7,7 @@ import {
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
-import { generateToken, validateToken } from './jwt.js'
+import { generateToken, validateToken,decodeToken } from './jwt.js'
 
 const app = express()
 const validateRequest = (req, res, next) => {
@@ -37,6 +37,20 @@ app.post('/register', async (req, res) => {
   const { username, password,rol } = req.body
   const success = await register(username, password,rol)
   res.send('{ "message": "user created" }')
+})
+
+app.post('/verified', async (req, res) => {
+  const { token } = req.body
+  if (validateToken(token)) {
+    const payload = decodeToken(token)
+    const { rol } = payload;
+    res.status(200)
+    res.json({rol:rol})
+    return
+  }
+  res.status(403)
+  res.json([])
+  
 })
 
 app.post('/login', async (req, res) => {

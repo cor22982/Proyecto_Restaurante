@@ -38,7 +38,7 @@ const Register = () =>{
     if (response.ok) {
       console.log('success!')
       setErrorMessage('')
-      window.location.href = '/login';
+      window.location.href = '/';
       return
     }else{
       setErrorMessage('Esta intentando ingresar a un usuario no admitido')

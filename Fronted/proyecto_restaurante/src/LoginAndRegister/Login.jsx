@@ -33,10 +33,9 @@ const Login = ({setAccessToken,setLoggedIn}) =>{
     // Aquí puedes agregar la lógica que desees ejecutar cuando el botón sea clicado
     if (response.ok) {
       const data = await response.json();
-      const { access_token} = data;
-      setAccessToken(access_token)
+      const { acces_token} = data;
+      setAccessToken(acces_token)
       setLoggedIn(true)
-      console.log('success!')
       setErrorMessage('')
       return
     }
@@ -68,8 +67,8 @@ const Login = ({setAccessToken,setLoggedIn}) =>{
         onChange={(value)=> setValue('password',value)}
         />
 
-      <p style={{ fontSize: '20px' }}>
-          ¿No te has registrado aún? <Link to="/register" style={{ fontSize: '30px', fontWeight: 'bold' }}>Regístrate aquí</Link>
+      <p style={{ fontSize: '15px' }}>
+          ¿No te has registrado aún? <Link to="/register" style={{ fontSize: '16px', fontWeight: 'bold', color: 'white'}}>Regístrate aquí</Link>
       </p>
       <ButtonCustom 
         type='submit' 
