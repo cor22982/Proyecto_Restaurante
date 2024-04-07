@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import TextInput from '../Components/TextInput';
 import ButtonCustom from '../Components/ButtonCustom';
-const Login = () =>{
+const Login = ({setAccessToken,setLoggedIn}) =>{
   const [formState, setFormState] = useState({ username: '',password: ''})
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -31,6 +31,10 @@ const Login = () =>{
     const response = await fetch('https://cocina.web05.lol/login', fetchOptions)
     // Aquí puedes agregar la lógica que desees ejecutar cuando el botón sea clicado
     if (response.ok) {
+      const data = await response.json();
+      const { access_token} = data;
+      setAccessToken(access_token)
+      setLoggedIn(true)
       console.log('success!')
       setErrorMessage('')
       return

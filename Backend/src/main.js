@@ -22,21 +22,6 @@ const validateRequest = (req, res, next) => {
 app.use(express.json())
 app.use(cors())
 
-app.get('/personal', async (req, res) => {
-  try {
-    const personal = await getAllPersonal()
-    res.status(200).json(personal) // Se agrega el campo "data" para mostrar los datos
-  } catch (error) {
-    res.status(500).json({ 
-      error: {
-        message: error.message, // Mensaje de error
-        name: error.name,       // Tipo de error
-        stack: error.stack      // Pila de llamadas
-        // Puedes agregar más detalles según sea necesario
-      }
-    })
-  }
-})
 
 
 const PORT = 3000
@@ -57,12 +42,9 @@ app.post('/register', async (req, res) => {
 
 app.post('/login', async (req, res) => {
   const { username, password } = req.body
-  console.log('usernameloged: ', username)
-  
   const success = await login(username, password)
   console.log('success', success)
   if (success) {
-    
     const user = () {
       username,
       rol = success.rol
