@@ -31,12 +31,16 @@ const Initial = ({ token }) => {
   let content = null;
 
   if (rol === 'admin') {
+    
     content = <PantallHost />;
   } else if (rol === 'cheff') {
+    
     content = <PantallaCocina />;
   } else if (rol === 'mesero') {
+    
     content = <PantallaMesero />;
   } else if (rol === 'barista') {
+    
     content = <PantallaBar />;
   } 
 

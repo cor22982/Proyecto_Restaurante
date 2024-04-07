@@ -1,6 +1,12 @@
+import '../Components/BarraLateral.css'
+
 const PantallaBar = () => {
   return (
-    <h1>PantallaBar</h1>
+    <>
+      <div className="barra-lateral"/>
+      
+    </>
+    
   ) ;
 }
 

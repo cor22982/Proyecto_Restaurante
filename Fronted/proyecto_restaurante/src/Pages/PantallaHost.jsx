@@ -1,7 +1,14 @@
+import '../Components/BarraLateral.css';
+import Container from './Container';
+import MenuButton from '../Components/MenuButton';
 const PantallaHost = () => {
   return (
-    <h1>Pantalla Host</h1>
-  ) ;
+    <div style={{ display: 'flex' }}>
+      <div className="barra-lateral">
+      </div>
+      <Container></Container>
+    </div>
+  );
 }
 
-export default PantallaHost
+export default PantallaHost;

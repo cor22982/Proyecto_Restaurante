@@ -1,6 +1,9 @@
+import '../Components/BarraLateral.css'
 const PantallaCocina = () => {
   return (
-    <h1>Pantalla Cocina</h1>
+    <div className="barra-lateral">
+
+    </div>
   ) ;
 }
 

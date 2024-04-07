@@ -1,0 +1,11 @@
+.square-box {
+
+  width: 740px;
+  height: 560px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(25px);
+  margin-left: 2px;
+  margin-right: 30px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
