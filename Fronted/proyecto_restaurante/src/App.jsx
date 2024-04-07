@@ -25,11 +25,11 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={ loggedin ? <Initial/>:<Login setAccessToken={setAccessToken} setLoggedIn={setLoggedIn}/>}
+          element={ loggedin ? <Initial token={accessToken}/>:<Login setAccessToken={setAccessToken} setLoggedIn={setLoggedIn}/>}
         />
         <Route
           path='/register'
-          element={loggedin ? <Initial/> : <Register/>}
+          element={loggedin ? <Initial token={accessToken}/> : <Register/>}
         />
         {/* Añade más rutas aquí */}
       </Routes>
