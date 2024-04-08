@@ -1,0 +1,20 @@
+.btn-small{
+
+  width: 194px;
+  height: 40px;
+  background: white;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  font-size: 26px;
+  margin-left: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  color: #333;
+
+}
+
+.btn-small:hover{
+  background: #ffffffd3;
+}

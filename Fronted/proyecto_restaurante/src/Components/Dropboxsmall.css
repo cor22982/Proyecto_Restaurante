@@ -1,0 +1,10 @@
+.dropdown-container{
+  width: 350px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.dropdown-toggle {
+  height: 40px;
+  font-size: 20px;
+}
