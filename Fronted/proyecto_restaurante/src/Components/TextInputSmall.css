@@ -1,6 +1,6 @@
 .input-box{
   
-  width: 250px;
+  width: 310px;
   height: 50px;
   
   margin: 20px 0;
@@ -11,9 +11,9 @@
   background: transparent;
   border: none;
   outline: none;
-  border: 2px solid rgba(255, 255, 255, .2);
+  border: 3px solid rgba(255, 255, 255, .2);
   border-radius: 40px;
-  font-size: 16px;
+  font-size: 20px;
   color: #fff;
   padding: 20px 45px 20px 20px;
 }
@@ -21,7 +21,7 @@
   color: #fff;
 }
 .input-box .icon{
-  right: 20px;
+  right: 25px;
   top: 30%;
   transform: translate(-50%);
   font-size: 20px;

@@ -4,6 +4,7 @@ import MenuButton from '../Components/MenuButton';
 import Sesiones from '../MeseroPages/Sesiones';
 import Cuentas from '../MeseroPages/Cuentas';
 import CuentaUnica from '../MeseroPages/CuentaUnica';
+import Cliente from '../MeseroPages/Cliente';
 const PantallaMesero = () => {
   return (
     <div style={{ display: 'flex' }}>
@@ -21,7 +22,7 @@ const PantallaMesero = () => {
           <MenuButton nombre='Encuestas'/>
         </div>
       <div className='square-box'>
-        <CuentaUnica></CuentaUnica>
+        <Cliente></Cliente>
 
       </div>
     </div>
