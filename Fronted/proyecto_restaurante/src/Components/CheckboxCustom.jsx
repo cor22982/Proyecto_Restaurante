@@ -11,7 +11,7 @@ const CheckboxCustom = ({name}) => {
     <div className='contenedor'>
       <p style={{color: 'white'}}>{name}</p>
       <button
-      className={pressed ? 'checkbox-custom' : 'checkbox-custom2'}
+      className={pressed ? 'checkbox-custom2' : 'checkbox-custom'}
       onClick={handleClick}
       ></button>
     </div>
