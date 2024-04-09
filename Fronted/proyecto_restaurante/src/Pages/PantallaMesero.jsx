@@ -5,6 +5,7 @@ import Sesiones from '../MeseroPages/Sesiones';
 import Cuentas from '../MeseroPages/Cuentas';
 import CuentaUnica from '../MeseroPages/CuentaUnica';
 import Cliente from '../MeseroPages/Cliente';
+import Factura from '../MeseroPages/Factura';
 import Pedido from '../MeseroPages/Pedido';
 const PantallaMesero = () => {
   return (
@@ -23,7 +24,7 @@ const PantallaMesero = () => {
           <MenuButton nombre='Encuestas'/>
         </div>
       <div className='square-box'>
-        <Pedido></Pedido>
+        <Factura></Factura>
 
       </div>
     </div>
