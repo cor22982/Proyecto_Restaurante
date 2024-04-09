@@ -1,0 +1,19 @@
+th{
+  border-bottom: 1px solid #fff;
+  padding: 10px; /* Ajusta el valor según la separación deseada */
+  font-size: 19px;
+  color: white;
+  font-weight: bold;
+}
+
+td{
+  font-size: 18px;
+  padding: 10px;
+  color: white;
+  font-weight: lighter;
+}
+
+
+table {
+  margin-left: 5px;
+}
