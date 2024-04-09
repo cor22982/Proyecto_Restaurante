@@ -35,4 +35,9 @@ export async function getFoodPrice(){
   return result
 }
 
+export async function getMesas () {
+  const result = await conn.query('select mesas.id as id_mesa, mesas.capacidad, mesas.se_puede_mover, areas.nombre as area, areas.fumadores from mesas join areas on mesas.id_area = areas.id;')
+  return result
+}
+
 

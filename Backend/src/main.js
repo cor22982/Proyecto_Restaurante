@@ -5,7 +5,8 @@ import {
   register,
   login,
   getFoodData,
-  getFoodPrice
+  getFoodPrice,
+  getMesas
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -86,6 +87,20 @@ app.get('/foodData', async (req, res) => {
     res.send({error: 'Error de servidor:('})
   }
 })
+
+app.get('/mesasData', async (req, res) => {
+  try{
+    const result = await getMesas()
+    res.status(200)
+    res.json(result.rows)
+  }
+  catch(e){
+    console.error('Error de servidor :(', e)
+    res.status(500)
+    res.send({error: 'Error de servidor:('})
+  }
+})
+
 
 app.get('/foodPrice', async (req, res) => {
   try{
