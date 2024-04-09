@@ -29,6 +29,7 @@ const Factura = () => {
         <TextoCustom titulo="Total: Q.0.00" fontSize="26px" lineWidth="290px"></TextoCustom>
         <ButtonSmall name="Imprimir"></ButtonSmall>
       </div>
+     
     </div>
     
     

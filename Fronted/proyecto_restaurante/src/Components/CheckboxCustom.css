@@ -1,0 +1,26 @@
+.checkbox-custom{
+  width: 30px;
+  height: 30px;
+  border: 2px solid white;
+  border-radius: 50%; /* Para que sea un círculo */
+  background-color: transparent;
+  transition: background-color 0.3s; /* Transición para cambiar de color al presionar */
+}
+
+
+.checkbox-custom2{
+  width: 30px;
+  height: 30px;
+  border: 2px solid white;
+  border-radius: 50%; /* Para que sea un círculo */
+  background-color: black;
+  transition: background-color 0.3s; /* Transición para cambiar de color al presionar */
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+  margin-left: 20px;
+}
