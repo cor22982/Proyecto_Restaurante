@@ -5,6 +5,7 @@ import TextoCustom from '../Components/TextoCustom';
 import CheckboxCustom from '../Components/CheckboxCustom';
 import ButtonSmall from '../Components/ButtonSmall';
 const Encuesta = () => {
+  console.log(localStorage.getItem('accessToken'))
   return (
     <div className='sizesquare'>
       <h1 className="titulo1" style={{marginRight: '20px'}}>ENCUESTA ATENCION AL CLIENTE</h1>
