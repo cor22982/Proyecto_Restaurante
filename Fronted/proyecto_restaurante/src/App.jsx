@@ -6,8 +6,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Initial from './Pages/Initial';
 
 function App() {
-  
-
   const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken'))
   const [loggedin, setLoggedIn] = useState(localStorage.getItem('loggedin') === 'true');
   // Actualizar el objeto en localStorage cuando cambie el nombre de usuario o el token de acceso

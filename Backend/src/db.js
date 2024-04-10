@@ -49,3 +49,13 @@ export async function getSessionID () {
   const result = await conn.query('select id from sesion;')
   return result
 }
+
+export async function insertfirstCuenta (sesionid) {
+  const result = await conn.query('insert into cuenta (total, esta_abierta, sesion) values (0.0, true, $1);',[parseInt(sesionid)]);
+  return result
+}
+
+export async function getCuentasIDbysesion (sesionid) {
+  const result = await conn.query('select id from cuenta where sesion = $1;;',[parseInt(sesionid)]);
+  return result
+}

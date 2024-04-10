@@ -4,10 +4,10 @@ import ButtonSmall from '../Components/ButtonSmall'
 import Dropboxsmall from '../Components/Dropboxsmall'
 import TextoCustom from '../Components/TextoCustom'
 
-const Cuentas = () => {
+const Cuentas = ({sesionState}) => {
   return (
     <div className='sizesquare'>
-      <h1 className="titulo1">Cuentas Sesion 1</h1>
+      <h1 className="titulo1">Sesion {sesionState}</h1>
       <ul className='lista' style={{height: '210px'}}>
         <SesionComponet nombre='Cuenta 1'></SesionComponet>
         <SesionComponet nombre='Cuenta 1'></SesionComponet>

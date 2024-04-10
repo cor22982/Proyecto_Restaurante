@@ -8,7 +8,9 @@ import {
   getFoodPrice,
   getMesas,
   insertfirstsesion,
-  getSessionID 
+  getSessionID ,
+  insertfirstCuenta,
+  getCuentasIDbysesion
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -75,6 +77,20 @@ app.post('/insertfirstsession', async(req, res) =>{
   }
 })
 
+app.post('/insertfirstcuenta', async(req, res) =>{
+    const { sesionid } = req.body
+    const success = await insertfirstCuenta(sesionid)
+    if (success) {
+      res.status(200)
+      res.send('{ "message": "Se ha insertado una cuenta" }')
+      return
+    }
+    res.status(401)
+    res.send('{ "message": "No se puede insertar la cuenta" }')
+
+})
+
+
 app.post('/login', async (req, res) => {
   const { username, password } = req.body
   const success = await login(username, password)
@@ -111,6 +127,21 @@ app.get('/foodData', async (req, res) => {
 app.get('/idsession', async (req,res) =>{
   try{
     const result = await getSessionID()
+    res.status(200)
+    res.json(result.rows)
+  }
+  catch(e){
+    console.error('Error de servidor :(', e)
+    res.status(500)
+    res.send({error: 'Error de servidor:('})
+  }
+})
+
+
+app.get('/idcuentas', async (req,res) =>{
+  const { sesionid } = req.body
+  try{
+    const result = await getCuentasIDbysesion (sesionid)
     res.status(200)
     res.json(result.rows)
   }
