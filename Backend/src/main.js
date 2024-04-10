@@ -7,7 +7,8 @@ import {
   getFoodData,
   getFoodPrice,
   getMesas,
-  insertfirstsesion
+  insertfirstsesion,
+  getSessionID 
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -97,6 +98,19 @@ app.post('/login', async (req, res) => {
 app.get('/foodData', async (req, res) => {
   try{
     const result = await getFoodData()
+    res.status(200)
+    res.json(result.rows)
+  }
+  catch(e){
+    console.error('Error de servidor :(', e)
+    res.status(500)
+    res.send({error: 'Error de servidor:('})
+  }
+})
+
+app.get('/idsession', async (req,res) =>{
+  try{
+    const result = await getSessionID()
     res.status(200)
     res.json(result.rows)
   }

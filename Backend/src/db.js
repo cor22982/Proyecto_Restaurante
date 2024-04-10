@@ -41,6 +41,11 @@ export async function getMesas () {
 }
 
 export async function insertfirstsesion (userid) {
-  const result = await conn.query('INSERT INTO sesion (mesero_asociado, fecha, fecha_inicio)  VALUES ($1, NOW(), NOW());',[userid])
+  const result = await conn.query('INSERT INTO SESION (mesero_asociado, monto_total, fecha, fecha_inicio)  VALUES ($1, 0.0,NOW(),NOW());',[userid])
+  return result
+}
+
+export async function getSessionID () {
+  const result = await conn.query('select id from sesion;')
   return result
 }
