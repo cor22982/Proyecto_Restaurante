@@ -138,8 +138,8 @@ app.get('/idsession', async (req,res) =>{
 })
 
 
-app.get('/idcuentas', async (req,res) =>{
-  const { sesionid } = req.body
+app.get('/idcuentas:sesionid', async (req,res) =>{
+  const sesionid = req.params.sesionid;
   try{
     const result = await getCuentasIDbysesion (sesionid)
     res.status(200)

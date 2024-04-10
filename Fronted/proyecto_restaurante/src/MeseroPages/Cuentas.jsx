@@ -1,17 +1,44 @@
 import './Titulo1.css'
+import { useEffect,useState } from 'react'
 import SesionComponet from '../Components/SesionComponet'
 import ButtonSmall from '../Components/ButtonSmall'
 import Dropboxsmall from '../Components/Dropboxsmall'
 import TextoCustom from '../Components/TextoCustom'
 
 const Cuentas = ({sesionState}) => {
+  console.log(sesionState)
+  const [cuentas, setCuentas] = useState([]);
+  const getCuentas = async () => {
+    const body = { }
+    body.sesionid = sesionState
+    const fetchOptions = {
+      method: 'GET',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const response = await fetch('https://cocina.web05.lol/idcuentas', fetchOptions)
+    if (response.ok){
+      const data = await response.json();
+      setCuentas(data)
+      console.log(data)
+      return
+    }
+  }
+  useEffect(() => {
+    getCuentas();
+  }, [])
   return (
     <div className='sizesquare'>
       <h1 className="titulo1">Sesion {sesionState}</h1>
       <ul className='lista' style={{height: '210px'}}>
-        <SesionComponet nombre='Cuenta 1'></SesionComponet>
-        <SesionComponet nombre='Cuenta 1'></SesionComponet>
-        <SesionComponet nombre='Cuenta 1'></SesionComponet>
+        {cuentas.map ((cuenta) => (
+          <SesionComponet
+            key={cuenta.id}
+            nombre={'Cuenta ' + cuenta.id}
+            ></SesionComponet>
+        ))}
       </ul>
       <ButtonSmall name='Agregar'></ButtonSmall>
       <br></br>
