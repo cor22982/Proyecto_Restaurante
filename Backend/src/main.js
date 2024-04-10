@@ -47,8 +47,9 @@ app.post('/verified', async (req, res) => {
   if (validateToken(token)) {
     const payload = decodeToken(token)
     const { rol } = payload;
+    const {username} = payload;
     res.status(200)
-    res.json({rol:rol})
+    res.json({rol:rol,username:username })
     return
   }
   res.status(403)
