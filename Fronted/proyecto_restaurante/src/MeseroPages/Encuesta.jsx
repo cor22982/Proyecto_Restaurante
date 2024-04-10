@@ -4,14 +4,39 @@ import { faIdCard} from '@fortawesome/free-solid-svg-icons';
 import TextoCustom from '../Components/TextoCustom';
 import CheckboxCustom from '../Components/CheckboxCustom';
 import ButtonSmall from '../Components/ButtonSmall';
+import React, { useEffect,useState } from 'react';
+
 const Encuesta = () => {
-  console.log(localStorage.getItem('accessToken'))
+  const [username, setUsername] = useState('');
+  const token = localStorage.getItem('accessToken')
+  useEffect(() => {
+    const sendDataToApi = async () => {
+      const body = { }
+      body.token = token
+      const fetchOptions = {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      const response = await fetch('https://cocina.web05.lol/verified', fetchOptions)
+      if (response.ok){
+        const data = await response.json();
+        const { username} = data;
+        setUsername(username)
+        return
+      }
+    }
+
+    sendDataToApi();
+  }, [token]);
   return (
     <div className='sizesquare'>
       <h1 className="titulo1" style={{marginRight: '20px'}}>ENCUESTA ATENCION AL CLIENTE</h1>
       <h1 className='titulo2' style={{marginLeft: '20px'}}>Informacion</h1>
       <div style={{flexDirection: 'row', display: 'flex', alignItems: 'center'}}>
-        <h2 style={{color: 'white', fontSize: '20px', marginLeft: '16px', marginRight: '10px'}}>Mesero: Mathew Cordero</h2>
+        <h2 style={{color: 'white', fontSize: '20px', marginLeft: '16px', marginRight: '10px'}}>Mesero: {username}</h2>
         <TextInputSmall
           icono={faIdCard}
           placeholder="NIT"

@@ -6,7 +6,8 @@ import {
   login,
   getFoodData,
   getFoodPrice,
-  getMesas
+  getMesas,
+  insertfirstsesion
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -57,12 +58,29 @@ app.post('/verified', async (req, res) => {
   
 })
 
+app.post('/insertfirstsession', async(req, res) =>{
+  const { token } = req.body
+  if (validateToken(token)) {
+    const payload = decodeToken(token)
+    const { id } = payload;
+    const success = await insertfirstsesion(id)
+    if (success) {
+      res.status(200)
+      res.send('{ "message": "Se ha insertado una nueva sesion" }')
+      return
+    }
+    res.status(401)
+    res.send('{ "message": "No tiene permisos" }')
+  }
+})
+
 app.post('/login', async (req, res) => {
   const { username, password } = req.body
   const success = await login(username, password)
   console.log('success', success)
   if (success) {
     const user =  {
+      id: success.id,
       username: username,
       rol: success.rol
     }
