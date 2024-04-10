@@ -13,12 +13,11 @@ const Cuentas = ({sesionState}) => {
     body.sesionid = sesionState
     const fetchOptions = {
       method: 'GET',
-      body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json'
       }
     };
-    const response = await fetch('https://cocina.web05.lol/idcuentas', fetchOptions)
+    const response = await fetch(`https://cocina.web05.lol/idcuentas/${sesionState}`, fetchOptions)
     if (response.ok){
       const data = await response.json();
       setCuentas(data)

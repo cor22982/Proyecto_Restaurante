@@ -138,10 +138,10 @@ app.get('/idsession', async (req,res) =>{
 })
 
 
-app.get('/idcuentas:sesionid', async (req,res) =>{
+app.get('/idcuentas/:sesionid', async (req, res) =>{
   const sesionid = req.params.sesionid;
   try{
-    const result = await getCuentasIDbysesion (sesionid)
+    const result = await getCuentasIDbysesion(sesionid)
     res.status(200)
     res.json(result.rows)
   }
@@ -151,6 +151,7 @@ app.get('/idcuentas:sesionid', async (req,res) =>{
     res.send({error: 'Error de servidor:('})
   }
 })
+
 
 app.get('/mesasData', async (req, res) => {
   try{
