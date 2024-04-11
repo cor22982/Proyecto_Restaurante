@@ -10,7 +10,9 @@ import {
   insertfirstsesion,
   getSessionID ,
   insertfirstCuenta,
-  getCuentasIDbysesion
+  getCuentasIDbysesion,
+  getCapacityMesas,
+  insertMesaSesion
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -142,6 +144,20 @@ app.get('/idcuentas/:sesionid', async (req, res) =>{
   const sesionid = req.params.sesionid;
   try{
     const result = await getCuentasIDbysesion(sesionid)
+    res.status(200)
+    res.json(result.rows)
+  }
+  catch(e){
+    console.error('Error de servidor :(', e)
+    res.status(500)
+    res.send({error: 'Error de servidor:('})
+  }
+})
+
+app.get('/capacytibySesion/:sesionid', async (req, res) =>{
+  const sesionid = req.params.sesionid;
+  try{
+    const result = await getCapacityMesas (sesionid)
     res.status(200)
     res.json(result.rows)
   }

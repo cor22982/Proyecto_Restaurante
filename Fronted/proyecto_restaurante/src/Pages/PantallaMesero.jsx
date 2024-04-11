@@ -16,7 +16,7 @@ import Platos from '../MeseroPages/Platos';
 const PantallaMesero = () => {
   const [formState, setFormState] = useState('sesiones')
   const [sesionState,setSesionState] = useState('')
-
+  
   const onclickMenu = ({ir_a}) => {
     setFormState(ir_a);
   }

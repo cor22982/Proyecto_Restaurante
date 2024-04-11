@@ -56,6 +56,16 @@ export async function insertfirstCuenta (sesionid) {
 }
 
 export async function getCuentasIDbysesion (sesionid) {
-  const result = await conn.query('select id from cuenta where sesion = $1;;',[parseInt(sesionid)]);
+  const result = await conn.query('select id from cuenta where sesion = $1;',[parseInt(sesionid)]);
   return result
+}
+
+export async function getCapacityMesas (sesionid) {
+  const result = await conn.query('SELECT SUM(mesas.capacidad) as capacidad_sesion FROM mesas_sesion JOIN mesas ON mesas_sesion.mesa = mesas.id where mesas_sesion.sesion = $1;',[parseInt(sesionid)]);
+  return result
+} 
+
+export async function insertMesaSesion (mesaid,sesionid) {
+  const result = await conn.query('insert into mesas_sesion(mesa,sesion) values ($1,1$2);',[parseInt(mesaid),parseInt(sesionid)]);
+  return result  
 }

@@ -2,8 +2,9 @@ import './Titulo1.css'
 import { useEffect,useState } from 'react'
 import SesionComponet from '../Components/SesionComponet'
 import ButtonSmall from '../Components/ButtonSmall'
-import Dropboxsmall from '../Components/Dropboxsmall'
+import TextInputSmall from '../Components/TextInputSmall'
 import TextoCustom from '../Components/TextoCustom'
+import { faTable } from '@fortawesome/free-solid-svg-icons';
 
 const Cuentas = ({sesionState}) => {
   console.log(sesionState)
@@ -63,10 +64,15 @@ const Cuentas = ({sesionState}) => {
       <br></br>
       <TextoCustom titulo="Mesas" fontSize="36px" lineWidth="150px"></TextoCustom>
       
-      <div style={{ display: 'flex',flexDirection: 'row' , alignItems: 'end'}}>
+      <div style={{ display: 'flex',flexDirection: 'row' , alignItems: 'center', marginLeft: '10px'}}>
       
-        <Dropboxsmall nombre="Mesas" lista={["Mesa 1 Area: Cocina","Mesa 2 Area: Cocina"]}></Dropboxsmall>
+        <TextInputSmall
+            icono={faTable}
+            placeholder="Numero de Mesa" 
+            type="Text" 
+          ></TextInputSmall>
         <ButtonSmall name='Agregar' onclick={handleClick}></ButtonSmall>
+        <TextoCustom titulo="Capacidad: 0" fontSize="26px" lineWidth="150px"></TextoCustom>
       </div>
      
       
