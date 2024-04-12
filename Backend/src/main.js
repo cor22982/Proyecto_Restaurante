@@ -97,16 +97,17 @@ app.post('/insertfirstcuenta', async(req, res) =>{
 })
 
 
-app.post('/insertMesa', async(req,res) => {
-  const { mesaid,sesionid } = req.body
-  const success = await insertMesaSesion (mesaid,sesionid)
-  if (success) {
-    res.status(200)
-    res.send('{ "message": "Se ha insertado una " }')
-    return
-  }
+app.post('/insertMesa', async (req, res) => {
+  const { mesaid, sesionid } = req.body;
+  const result = await insertMesaSesion(mesaid, sesionid);
 
-})
+  if (result.error) {
+    res.status(401).json({ message: result.error });
+  } else {
+    res.status(200).json({ message: 'Se ha insertado una mesa.' });
+  }
+});
+
 
 
 app.post('/login', async (req, res) => {
