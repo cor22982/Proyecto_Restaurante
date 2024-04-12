@@ -106,3 +106,8 @@ export async function getQuejasbyEmployeeID(id){
   const result = await conn.query('select queja.id, queja.fecha_hora, cliente.nombre, queja.motivo, queja.calificacion, personal.nombre from queja join personal on queja.personal_id = personal.id join cliente on queja.nit_cliente = cliente.id where personal_id = $1;',[parseInt(id)])
   return result
 }
+
+export async function getPriceforCuenta (cuentaid) {
+  const result = await conn.query('select total from cuenta where id = $1;',[parseInt(cuentaid)])
+  return result
+}

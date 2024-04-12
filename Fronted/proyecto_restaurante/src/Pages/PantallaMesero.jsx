@@ -16,7 +16,7 @@ import Platos from '../MeseroPages/Platos';
 const PantallaMesero = () => {
   const [formState, setFormState] = useState('sesiones')
   const [sesionState,setSesionState] = useState('')
-  
+  const [cuenta, setCuenta] = useState('')
   const onclickMenu = ({ir_a}) => {
     setFormState(ir_a);
   }
@@ -45,7 +45,8 @@ const PantallaMesero = () => {
         {formState === 'mesas' && <Mesas />}
         {formState === 'platos' && <Platos />}
         {formState === 'encuesta' && <Encuesta />}
-        {formState === 'cuentas' && <Cuentas sesionState={sesionState}/>}
+        {formState === 'cuentas' && <Cuentas sesionState={sesionState} setFormState={setFormState} setCuenta={setCuenta}/>}
+        {formState === 'cuenta_unica' && <CuentaUnica cuenta={cuenta}></CuentaUnica>}
        
       </div>
     </div>

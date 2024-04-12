@@ -6,7 +6,7 @@ import TextInputSmall from '../Components/TextInputSmall'
 import TextoCustom from '../Components/TextoCustom'
 import { faTable } from '@fortawesome/free-solid-svg-icons';
 
-const Cuentas = ({sesionState}) => {
+const Cuentas = ({sesionState,setFormState,setCuenta}) => {
   console.log(sesionState)
   const [cuentas, setCuentas] = useState([]);
   const [dataState, setDataState] = useState({ capacidad: null,mesa: null})
@@ -53,6 +53,10 @@ const Cuentas = ({sesionState}) => {
     }
   }
 
+  const clickcomponet = ({item}) => {
+    setCuenta(item)
+    setFormState('cuenta_unica')
+  }
 
   useEffect(() => {
     getCuentas();
@@ -104,6 +108,7 @@ const Cuentas = ({sesionState}) => {
           <SesionComponet
             key={cuenta.id}
             nombre={'Cuenta ' + cuenta.id}
+            onclick={() => clickcomponet({item: cuenta.id})}
             ></SesionComponet>
         ))}
       </ul>

@@ -33,3 +33,9 @@
   flex-direction: column;
 }
 
+
+.error-message{
+  color:rgb(255, 208, 208);
+  margin-left: 10px;
+  font-size: 19px;
+}

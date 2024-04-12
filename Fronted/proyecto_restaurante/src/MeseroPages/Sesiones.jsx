@@ -7,10 +7,10 @@ const Sesiones = ({setFormState,setSesionState}) => {
   const getSesiones = async () => {
     const fetchOptions = {
       method: 'GET',
-      headers: {
+      headers: {  
         'Content-Type': 'application/json'
       }
-    };
+    };  
     const response = await fetch('https://cocina.web05.lol/idsession', fetchOptions)
     if (response.ok){
       const data = await response.json();
