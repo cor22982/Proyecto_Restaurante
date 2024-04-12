@@ -16,6 +16,9 @@ const CuentaUnica = ({cuenta}) => {
     })
   }
 
+  console.table(form)
+  console.log(cuenta)
+
 
   const getPrecio = async () =>{
     const fetchOptions = {
@@ -29,6 +32,26 @@ const CuentaUnica = ({cuenta}) => {
       const data = await response.json();
       setValue('price',data[0].total)
       return
+    }
+  }
+
+
+  const insertPlato = async () => {
+    const body = { cuentaid: cuenta,comida_id: form.plato,cantidad:form.cantidad}
+    const fetchOptions = {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const response = await fetch('https://cocina.web05.lol/insertplatoonsesion', fetchOptions);
+    if (response.ok) {
+      getPrecio();
+      console.log('succesoninsert');
+      
+      return;
     }
   }
 
@@ -51,7 +74,9 @@ const CuentaUnica = ({cuenta}) => {
           <TextInputSmall
             icono={faBowlFood}
             placeholder="Numero del plato" 
-            type="Number" 
+            type="Number"
+            value={form.plato} 
+            onChange={(value)=> setValue('plato',value)} 
             />
           
         </div>
@@ -61,9 +86,10 @@ const CuentaUnica = ({cuenta}) => {
             icono={fa1}
             placeholder="Cantidad" 
             type="number" 
-
+            value={form.cantidad}
+            onChange={(value)=> setValue('cantidad',value)} 
             />
-          <ButtonSmall name="Agregar"></ButtonSmall>
+          <ButtonSmall name="Agregar" onclick={insertPlato}></ButtonSmall>
         </div>
       </div>
       <div style={{flexDirection: 'row', display: 'flex', alignItems:'end'}}>
