@@ -13,7 +13,8 @@ import {
   getCuentasIDbysesion,
   getCapacityMesas,
   insertMesaSesion,
-  insertQueja
+  insertQueja,
+  getQuejasbyFoodID
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -218,14 +219,18 @@ app.post('/queja' , async (req, res) => {
 
 })
 
-app.get('/queja', (req, res) => {
-  try{
 
+
+app.get('/queja/:food_id', async (req, res) => {
+  const food_id = req.params.food_id
+  try{
+    
+    res.status(200).json(await getQuejasbyFoodID(food_id))
   }
   catch(e){
+    console.error('Error de servidor :(', e)
     res.status(500).send('Error de servidor :/')
   }
-
 })
 
 

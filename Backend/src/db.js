@@ -90,7 +90,7 @@ export async function insertQueja(nit, reason, employee_id, food_id, rating){
   return result
 } 
 
-export async function getQuejasbyFood(){
-  const result = await conn.query('select comida_id, count(*) as quejas from queja group by comida_id;')
+export async function getQuejasbyFoodID(id){
+  const result = await conn.query('select queja.id, queja.fecha_hora, queja.nit_cliente, queja.motivo queja.calificacion, comida.nombre from queja join comidas on queja.comida_id = comidas.id where comida_id = $1;',[parseInt(id)])
   return result
 }
