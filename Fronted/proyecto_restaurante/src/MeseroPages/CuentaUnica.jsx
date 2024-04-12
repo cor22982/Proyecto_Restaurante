@@ -1,10 +1,41 @@
 import './Titulo1.css'
 import TextoCustom from '../Components/TextoCustom';
 import ButtonSmall from '../Components/ButtonSmall';
-import Dropboxsmall from '../Components/Dropboxsmall';
 import TextInputSmall from '../Components/TextInputSmall';
-import { fa1,faSearch,faBowlFood } from '@fortawesome/free-solid-svg-icons';
+import { fa1,faBowlFood } from '@fortawesome/free-solid-svg-icons';
+import { useEffect,useState } from 'react'
+
 const CuentaUnica = ({cuenta}) => {
+
+  const [form, setForm] =  useState({ plato: null,cantidad: null, price: null});
+
+  const setValue = (name, value) => {
+    setForm({
+      ...form,
+      [name]: value
+    })
+  }
+
+
+  const getPrecio = async () =>{
+    const fetchOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const response = await fetch(`https://cocina.web05.lol/cuentaprecio/${cuenta}`, fetchOptions)
+    if (response.ok){
+      const data = await response.json();
+      setValue('price',data[0].total)
+      return
+    }
+  }
+
+  useEffect(() => {
+    getPrecio();
+  }, [])
+
 
   return (
     <div className='sizesquare'>
@@ -36,7 +67,7 @@ const CuentaUnica = ({cuenta}) => {
         </div>
       </div>
       <div style={{flexDirection: 'row', display: 'flex', alignItems:'end'}}>
-        <TextoCustom titulo="Total: Q.0.00" fontSize="36px" lineWidth="290px"></TextoCustom>
+        <TextoCustom titulo={'Total: Q.'+ form.price} fontSize="36px" lineWidth="290px"></TextoCustom>
         <ButtonSmall name="Pagar"></ButtonSmall>
         <ButtonSmall name="Ver Pedido"></ButtonSmall>
       </div>

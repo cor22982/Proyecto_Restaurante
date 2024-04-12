@@ -17,7 +17,8 @@ import {
   getQuejasbyFoodID,
   getQuejasbyClientID,
   getQuejasbyEmployeeID,
-  getPriceforCuenta
+  getPriceforCuenta,
+  insertplatoonsesion
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -109,7 +110,16 @@ app.post('/insertMesa', async (req, res) => {
   }
 });
 
+app.post('/insertplatoonsesion', async() => {
+  const { cuentaid,comida_id, cantidad } = req.body;
+  const result = await insertplatoonsesion (cuentaid,comida_id, cantidad);
 
+  if (result.error) {
+    res.status(401).json({ message: result.error });
+  } else {
+    res.status(200).json({ message: 'Se ha insertado un plato.' });
+  }
+})
 
 app.post('/login', async (req, res) => {
   const { username, password } = req.body

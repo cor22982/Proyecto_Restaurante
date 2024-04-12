@@ -111,3 +111,13 @@ export async function getPriceforCuenta (cuentaid) {
   const result = await conn.query('select total from cuenta where id = $1;',[parseInt(cuentaid)])
   return result
 }
+
+
+export async function insertplatoonsesion (cuentaid,comida_id, cantidad) {
+  const result = await conn.query('insert into cuenta_comida (cuenta,comida,cantidad) values ($1,$2,$3);',[parseInt(cuentaid),parseInt(comida_id),parseInt(cantidad)])
+  return result
+}
+
+
+
+
