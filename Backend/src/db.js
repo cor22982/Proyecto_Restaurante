@@ -94,3 +94,17 @@ export async function getQuejasbyFoodID(id){
   const result = await conn.query('select queja.id, queja.fecha_hora, queja.nit_cliente, queja.motivo queja.calificacion, comida.nombre from queja join comidas on queja.comida_id = comidas.id where comida_id = $1;',[parseInt(id)])
   return result
 }
+export async function getQuejasbyFoodID(id){
+  const result = await conn.query('select queja.id, queja.fecha_hora, cliente.nombre queja.motivo, queja.calificacion, comida.nombre from queja join comidas on queja.comida_id = comidas.id join cliente on queja.nit_cliente = cliente.nit where comida_id = $1;',[parseInt(id)])
+  return result
+}
+
+export async function getQuejasbyClientID(id){
+  const result = await conn.query('select queja.id, queja.fecha_hora, cliente.nombre , queja.motivo, queja.calificacion, comida.nombre from queja join cliente on queja.nit_cliente = cliente.id join comidas on comidas.id = queja.comida_id where nit_cliente = $1;',[parseInt(id)])
+  return result
+}
+
+export async function getQuejasbyEmployeeID(id){
+  const result = await conn.query('select queja.id, queja.fecha_hora, cliente.nombre, queja.motivo, queja.calificacion, personal.nombre from queja join personal on queja.personal_id = personal.id join cliente on queja.nit_cliente = cliente.id where personal_id = $1;',[parseInt(id)])
+  return result
+}
