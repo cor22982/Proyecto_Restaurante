@@ -12,7 +12,8 @@ import {
   insertfirstCuenta,
   getCuentasIDbysesion,
   getCapacityMesas,
-  insertMesaSesion
+  insertMesaSesion,
+  insertQueja
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -204,6 +205,27 @@ app.get('/foodPrice', async (req, res) => {
     console.error('Error de servidor :(', e)
     res.status(500).send({error: 'Error con el servidor :('})
   }
+})
+
+app.post('/queja' , async (req, res) => {
+  const { nit, reason, employee_id, food_id, rating } = req.body
+  try{
+    res.status(200).send(await insertQueja(nit, reason, employee_id, food_id, rating))
+  }
+  catch(e){
+    res.status(500).send('Error de servidor :/')
+  }
+
+})
+
+app.get('/queja', (req, res) => {
+  try{
+
+  }
+  catch(e){
+    res.status(500).send('Error de servidor :/')
+  }
+
 })
 
 

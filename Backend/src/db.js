@@ -65,6 +65,7 @@ export async function getCapacityMesas (sesionid) {
   return result
 } 
 
+
 export async function insertMesaSesion(mesaid, sesionid) {
   try {
     const result = await conn.query('insert into mesas_sesion(mesa,sesion) values ($1,$2);', [parseInt(mesaid), parseInt(sesionid)]);
@@ -76,4 +77,15 @@ export async function insertMesaSesion(mesaid, sesionid) {
       return { error: 'Ocurrió un error al insertar la mesa en la sesión.' };
     }
   }
+}
+
+export async function insertQueja(nit, reason, employee_id, food_id, rating){
+  let result;
+  if (food_id = ''){
+    result = await conn.query('insert into queja (nit_cliente, motivo, personal_id, calificacion) values (?, ?, ?,?);',[parseInt(nit), reason, parseInt(employee_id), parseInt(rating)])
+  }
+  else{
+    result = await conn.query('insert into pedido (nit_cliente, motivo, comida_id, calificacion) values (?, ?, ?, ?);',[parseInt(nit), reason, parseInt(employee_id), parseInt(food_id)])
+  }
+  return result
 }
