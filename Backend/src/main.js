@@ -206,6 +206,16 @@ app.post('/queja' , async (req, res) => {
 
 })
 
+app.get('/queja', (req, res) => {
+  try{
+
+  }
+  catch(e){
+    res.status(500).send('Error de servidor :/')
+  }
+
+})
+
 
 app.use((req, res) => {
   res.status(501).json({ error: 'Método no implementado' })
