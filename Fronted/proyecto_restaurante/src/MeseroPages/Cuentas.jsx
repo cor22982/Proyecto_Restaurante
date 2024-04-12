@@ -9,9 +9,18 @@ import { faTable } from '@fortawesome/free-solid-svg-icons';
 const Cuentas = ({sesionState}) => {
   console.log(sesionState)
   const [cuentas, setCuentas] = useState([]);
+  const [dataState, setDataState] = useState({ capacidad: null,mesa: null})
+  const [errorMessage, setErrorMessage] = useState('')
+
+
+  const setValue = (name, value) => {
+    setDataState({
+      ...dataState,
+      [name]: value
+    })
+  }
+
   const getCuentas = async () => {
-    const body = { }
-    body.sesionid = sesionState
     const fetchOptions = {
       method: 'GET',
       headers: {
@@ -19,16 +28,35 @@ const Cuentas = ({sesionState}) => {
       }
     };
     const response = await fetch(`https://cocina.web05.lol/idcuentas/${sesionState}`, fetchOptions)
+    
     if (response.ok){
       const data = await response.json();
       setCuentas(data)
       console.log(data)
       return
     }
+    
   }
+
+  const getCapacidad = async () =>{
+    const fetchOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const response = await fetch(`https://cocina.web05.lol/capacytibySesion/${sesionState}`, fetchOptions)
+    if (response.ok){
+      const data = await response.json();
+      setValue('capacidad',data[0].capacidad_sesion)
+      return
+    }
+  }
+
 
   useEffect(() => {
     getCuentas();
+    getCapacidad ();
   }, [])
 
     const handleClick = async () => {
@@ -47,6 +75,26 @@ const Cuentas = ({sesionState}) => {
         return;
       }
     };
+
+    const agregarMesa = async () => {
+      const body = { mesaid: dataState.mesa,sesionid: sesionState}
+      const fetchOptions = {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      const response = await fetch('https://cocina.web05.lol/insertMesa', fetchOptions);
+      const data = await response.json();
+      if (response.ok) {
+        getCapacidad ();
+        console.log('succesoninsert');
+        setErrorMessage('')
+        return;
+      }
+      setErrorMessage(data[0].message)
+    }
   
   return (
     <div className='sizesquare'>
@@ -69,11 +117,20 @@ const Cuentas = ({sesionState}) => {
         <TextInputSmall
             icono={faTable}
             placeholder="Numero de Mesa" 
-            type="Text" 
+            type="number" 
+            value={dataState.mesa}
+            onChange={(value)=> setValue('mesa',value)} 
           ></TextInputSmall>
-        <ButtonSmall name='Agregar' onclick={handleClick}></ButtonSmall>
-        <TextoCustom titulo="Capacidad: 0" fontSize="26px" lineWidth="150px"></TextoCustom>
+        <ButtonSmall name='Agregar' onclick={agregarMesa}></ButtonSmall>
+        <TextoCustom titulo={"Capacidad: " + dataState.capacidad} fontSize="26px" lineWidth="150px"></TextoCustom>
       </div>
+      {
+        errorMessage !== '' ? (
+          <div className='error-message' onClick={() => setErrorMessage('')}>
+            {errorMessage}
+          </div>
+        ) : null
+      }
      
       
     </div>
