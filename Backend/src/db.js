@@ -65,7 +65,15 @@ export async function getCapacityMesas (sesionid) {
   return result
 } 
 
-export async function insertMesaSesion (mesaid,sesionid) {
-  const result = await conn.query('insert into mesas_sesion(mesa,sesion) values ($1,1$2);',[parseInt(mesaid),parseInt(sesionid)]);
-  return result  
+export async function insertMesaSesion(mesaid, sesionid) {
+  try {
+    const result = await conn.query('insert into mesas_sesion(mesa,sesion) values ($1,$2);', [parseInt(mesaid), parseInt(sesionid)]);
+    return result;
+  } catch (error) {
+    if (error.code === '20808') {
+      return { error: 'No se le puede asignar esta mesa porque excede el límite de la sesión.' };
+    } else {
+      return { error: 'Ocurrió un error al insertar la mesa en la sesión.' };
+    }
+  }
 }
