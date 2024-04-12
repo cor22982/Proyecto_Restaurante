@@ -110,7 +110,7 @@ app.post('/insertMesa', async (req, res) => {
   }
 });
 
-app.post('/insertplatoonsesion', async() => {
+app.post('/insertplatoonsesion', async(req,res) => {
   const { cuentaid,comida_id, cantidad } = req.body;
   const result = await insertplatoonsesion (cuentaid,comida_id, cantidad);
 
