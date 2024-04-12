@@ -93,7 +93,7 @@ const Cuentas = ({sesionState}) => {
         setErrorMessage('')
         return;
       }
-      setErrorMessage(data[0].message)
+      setErrorMessage(data.message)
     }
   
   return (
