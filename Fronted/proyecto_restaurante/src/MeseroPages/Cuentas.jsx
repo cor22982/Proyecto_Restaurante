@@ -56,7 +56,7 @@ const Cuentas = ({sesionState,setFormState,setCuenta}) => {
   const clickcomponet = ({item}) => {
     setCuenta(item)
     setFormState('cuenta_unica')
-  }
+  } 
 
   useEffect(() => {
     getCuentas();

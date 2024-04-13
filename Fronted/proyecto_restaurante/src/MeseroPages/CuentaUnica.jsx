@@ -5,7 +5,7 @@ import TextInputSmall from '../Components/TextInputSmall';
 import { fa1,faBowlFood } from '@fortawesome/free-solid-svg-icons';
 import { useEffect,useState } from 'react'
 
-const CuentaUnica = ({cuenta}) => {
+const CuentaUnica = ({cuenta,setFormState}) => {
 
   const [form, setForm] =  useState({ plato: null,cantidad: null, price: null});
 
@@ -55,6 +55,11 @@ const CuentaUnica = ({cuenta}) => {
     }
   }
 
+  const handleClick = () => {
+
+    setFormState('pedido')
+  }
+
   useEffect(() => {
     getPrecio();
   }, [])
@@ -95,7 +100,7 @@ const CuentaUnica = ({cuenta}) => {
       <div style={{flexDirection: 'row', display: 'flex', alignItems:'end'}}>
         <TextoCustom titulo={'Total: Q.'+ form.price} fontSize="36px" lineWidth="290px"></TextoCustom>
         <ButtonSmall name="Pagar"></ButtonSmall>
-        <ButtonSmall name="Ver Pedido"></ButtonSmall>
+        <ButtonSmall name="Ver Pedido" onclick={handleClick}></ButtonSmall>
       </div>
       
 

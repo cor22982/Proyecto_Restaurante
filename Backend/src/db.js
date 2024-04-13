@@ -118,6 +118,11 @@ export async function insertplatoonsesion (cuentaid,comida_id, cantidad) {
   return result
 }
 
+export async function getPedido (cuentaid) {
+  const result = await conn.query('select cuenta_comida.cantidad as cantidad, comidas.nombre  as plato, comidas.descripcion as descripcion , comidas.precio as preciounidad, cuenta_comida.cantidad*comidas.precio as preciototal from cuenta_comida join comidas on comidas.id = cuenta_comida.comida where cuenta_comida.cuenta = $1;',[parseInt(cuentaid)])
+  return result
+}
+
 
 
 

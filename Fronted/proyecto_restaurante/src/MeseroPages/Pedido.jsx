@@ -2,7 +2,7 @@ import './Titulo1.css'
 import Tabla from '../Components/Tabla';
 import TextoCustom from '../Components/TextoCustom';
 import ButtonSmall from '../Components/ButtonSmall';
-const Pedido = () => {
+const Pedido = ({cuenta}) => {
 
   const columnas = ['Cantidad', 'Plato', 'Descripcion', 'PrecioUnidad', 'PrecioTotal'];
   const datos = [
@@ -11,9 +11,7 @@ const Pedido = () => {
   return (
     <div className='sizesquare'>
       <div style={{flexDirection: 'row', display: 'flex'}}>
-        <h1 className="titulo1" style={{marginLeft: '20px'}}>Pedido</h1>
-        <h1 className='titulo2' style={{marginLeft: '50px'}}>Encargado: Mathew Cordero</h1>
-        <h1 className='titulo2'style={{marginLeft: '60px'}}>06/04/2024</h1>
+        <h1 className="titulo1" style={{marginLeft: '20px'}}>Pedido {cuenta}</h1>
       </div>
       <div style={{width: '730px', height: '400px', overflowY: 'auto'}}>
         <Tabla columnas={columnas} datos={datos} />

@@ -18,7 +18,8 @@ import {
   getQuejasbyClientID,
   getQuejasbyEmployeeID,
   getPriceforCuenta,
-  insertplatoonsesion
+  insertplatoonsesion,
+  getPedido
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -181,6 +182,22 @@ app.get('/idcuentas/:sesionid', async (req, res) =>{
     res.send({error: 'Error de servidor:('})
   }
 })
+
+
+app.get('/getpedidos/:cuentaid', async (req, res) =>{
+  const cuentaid = req.params.cuentaid;
+  try{
+    const result = await getPedido (cuentaid)
+    res.status(200)
+    res.json(result.rows)
+  }
+  catch(e){
+    console.error('Error de servidor :(', e)
+    res.status(500)
+    res.send({error: 'Error de servidor:('})
+  }
+})
+
 
 
 app.get('/cuentaprecio/:cuentaid', async (req, res) =>{
