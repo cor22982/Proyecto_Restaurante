@@ -130,7 +130,7 @@ export async function ordenarPedido (cuentaid) {
 
 
 export async function insertcliente (direccion,nombre,nit,cuenta) {
-  await conn.query('insert into cliente(direccion,nombre,nit) values ($1,$2,$3) ON CONFLICT (nit) DO NOTHING;', [direccion,nombre,nit,parseInt(cuenta)])
+  await conn.query('insert into cliente(direccion,nombre,nit) values ($1,$2,$3) ON CONFLICT (nit) DO NOTHING;', [direccion,nombre,nit])
   const result = await conn.query('UPDATE cuenta set cliente = $1 where id = $2;',[nit,parseInt(cuenta)])
   return result
 }
