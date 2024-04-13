@@ -4,7 +4,7 @@ import TextoCustom from '../Components/TextoCustom';
 import ButtonSmall from '../Components/ButtonSmall';
 const Pedido = ({cuenta}) => {
 
-  const columnas = ['Cantidad', 'Plato', 'Descripcion', 'PrecioUnidad', 'PrecioTotal'];
+  const columnas = ['cantidad','plato','descripcion','preciounidad','preciototal'];
   const datos = [
     { Cantidad: '3', Plato: 'Hamburguesa', Descripcion: 'Deliciosa hamburguesa con queso y vegetales', PrecioUnidad: 'Q8.99', PrecioTotal: 'Q26.97' },
   ];
