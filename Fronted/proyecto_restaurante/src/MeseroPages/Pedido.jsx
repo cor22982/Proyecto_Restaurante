@@ -9,8 +9,8 @@ const Pedido = ({cuenta}) => {
   const [datos, setDatos] = useState([]);
   const columnas = ['cantidad','plato','descripcion','precio','total'];
   const [precio, setPrecio] = useState(0)
-  const [showBox, setShowBox] = useState(false);
-  
+  const [errorMessage, setErrorMessage] = useState('')
+
   const getPrecio = async () =>{
     const fetchOptions = {
       method: 'GET',
@@ -24,6 +24,25 @@ const Pedido = ({cuenta}) => {
       setPrecio(data[0].total)
       return
     }
+  }
+
+  const pedido = async () => {
+    const body = { }
+    body.cuentaid = cuenta
+    const fetchOptions = {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const response = await fetch('https://cocina.web05.lol/insertpedido', fetchOptions)
+    const data = await response.json();
+    if (response.ok) {
+      setErrorMessage(data.message)
+      return
+    }
+    setErrorMessage(data.message)
   }
   useEffect(()=> {
     const getPedidos = async () => {
@@ -58,8 +77,15 @@ const Pedido = ({cuenta}) => {
       
       <div style={{flexDirection: 'row', display: 'flex', alignItems:'end'}}>
         <TextoCustom titulo={"Total: Q." + precio} fontSize="36px" lineWidth="290px"></TextoCustom>
-        <ButtonSmall name="Ordenar"></ButtonSmall>
+        <ButtonSmall name="Ordenar" onclick={pedido}></ButtonSmall>
       </div>
+      {
+        errorMessage !== '' ? (
+          <div className='error-message' onClick={() => setErrorMessage('')}>
+            {errorMessage}
+          </div>
+        ) : null
+      }
       
     </div>
   ); 
