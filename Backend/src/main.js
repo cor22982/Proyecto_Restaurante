@@ -20,7 +20,9 @@ import {
   getPriceforCuenta,
   insertplatoonsesion,
   getPedido,
-  ordenarPedido
+  ordenarPedido,
+  insertcliente,
+  insertpago 
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -97,6 +99,20 @@ app.post('/insertfirstcuenta', async(req, res) =>{
     }
     res.status(401)
     res.send('{ "message": "No se puede insertar la cuenta" }')
+
+})
+
+app.post('/insertpagos', async(req, res) =>{
+  const { direccion,nombre,nit,cuenta,monto,forma } = req.body
+  await insertcliente (direccion,nombre,nit,cuenta)
+  const success = await insertpago (monto,forma,cliente,cuenta)
+  if (success) {
+    res.status(200)
+    res.send('{ "message": "Se ha insertado una forma de pago" }')
+    return
+  }
+  res.status(401)
+  res.send('{ "message": "No se inserto la forma de pago" }')
 
 })
 

@@ -129,4 +129,15 @@ export async function ordenarPedido (cuentaid) {
 }
 
 
+export async function insertcliente (direccion,nombre,nit,cuenta) {
+  await conn.query('insert into cliente(direccion,nombre,nit) values ($1,$2,$3) ON CONFLICT (nit) DO NOTHING;', [direccion,nombre,nit,parseInt(cuenta)])
+  const result = await conn.query('UPDATE cuenta set cliente = $1 where id = $2;',[nit,parseInt(cuenta)])
+  return result
+}
+
+export async function insertpago (monto,forma,cliente,cuenta) {
+  const result = await conn.query('insert into forma_de_pago(monto,forma,cliente,cuenta) values ($1,$2,$3,$4);',[parseFloat(monto), forma,cliente, parseInt(cuenta)])
+  return result
+}
+
 
