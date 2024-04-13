@@ -123,6 +123,10 @@ export async function getPedido (cuentaid) {
   return result
 }
 
+export async function ordenarPedido (cuentaid) {
+  const result = await conn.query('select insertar_comidas_en_orden($1);',[parseInt(cuentaid)])
+  return result
+}
 
 
 

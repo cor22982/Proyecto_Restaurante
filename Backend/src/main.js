@@ -19,7 +19,8 @@ import {
   getQuejasbyEmployeeID,
   getPriceforCuenta,
   insertplatoonsesion,
-  getPedido
+  getPedido,
+  ordenarPedido
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -96,6 +97,20 @@ app.post('/insertfirstcuenta', async(req, res) =>{
     }
     res.status(401)
     res.send('{ "message": "No se puede insertar la cuenta" }')
+
+})
+
+
+app.post('/insertpedido', async(req, res) =>{
+  const { cuentaid } = req.body
+  const success = await ordenarPedido (cuentaid)
+  if (success) {
+    res.status(200)
+    res.send('{ "message": "Se ha enviado los pedidos" }')
+    return
+  }
+  res.status(401)
+  res.send('{ "message": "No se pueden enviar los pedidos" }')
 
 })
 

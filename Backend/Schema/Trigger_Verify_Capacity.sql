@@ -55,3 +55,27 @@ CREATE or REPLACE TRIGGER insert_comida_cantidad
 AFTER INSERT ON cuenta_comida
 FOR EACH ROW
 EXECUTE FUNCTION insert_comida();
+
+
+CREATE OR REPLACE FUNCTION insertar_comidas_en_orden(cuenta_id INT) RETURNS VOID AS $$
+DECLARE
+    comida_id INT;
+    tipo_comida TEXT;
+BEGIN
+
+    FOR comida_id IN SELECT comida FROM cuenta_comida WHERE cuenta = cuenta_id LOOP
+        
+        select tipo into tipo_comida from comidas where id = comida_id;
+
+        if tipo_comida = 'comida' then
+            INSERT INTO orden_cocina (plato,cuenta_id) VALUES (comida_id,cuenta_id);
+        elsif tipo_comida = 'bebida' then
+            INSERT INTO orden_bar (bebida,cuenta_id) VALUES (comida_id,cuenta_id);
+        end if;
+        
+    END LOOP;
+
+END;
+$$ LANGUAGE plpgsql;
+
+select insertar_comidas_en_orden(14);

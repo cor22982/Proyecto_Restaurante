@@ -11,7 +11,7 @@ const Cuentas = ({sesionState,setFormState,setCuenta}) => {
   const [cuentas, setCuentas] = useState([]);
   const [dataState, setDataState] = useState({ capacidad: null,mesa: null})
   const [errorMessage, setErrorMessage] = useState('')
-
+  
 
   const setValue = (name, value) => {
     setDataState({
