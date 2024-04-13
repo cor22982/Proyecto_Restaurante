@@ -105,7 +105,7 @@ app.post('/insertfirstcuenta', async(req, res) =>{
 app.post('/insertpagos', async(req, res) =>{
   const { direccion,nombre,nit,cuenta,monto,forma } = req.body
   await insertcliente (direccion,nombre,nit,cuenta)
-  const success = await insertpago (monto,forma,cliente,cuenta)
+  const success = await insertpago (monto,forma,nit,cuenta)
   if (success) {
     res.status(200)
     res.send('{ "message": "Se ha insertado una forma de pago" }')
