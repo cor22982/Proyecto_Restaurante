@@ -6,7 +6,7 @@ const SesionComponet = ({nombre,onclick}) => {
   return (
     <div className='content-component-sesion'>
       <p className='name-sesion'>{nombre}</p>
-      <button className='buttonsesion' onClick={onclick}>
+      <button className='buttonsesion' onClick={onclick} >
         <FontAwesomeIcon icon={faPen} className="icon" />
       </button>
     </div>

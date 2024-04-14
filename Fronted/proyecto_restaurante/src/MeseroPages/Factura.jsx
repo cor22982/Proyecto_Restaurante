@@ -2,32 +2,105 @@ import './Titulo1.css'
 import Tabla from '../Components/Tabla';
 import TextoCustom from '../Components/TextoCustom';
 import ButtonSmall from '../Components/ButtonSmall';
-const Factura = () => {
-  const columnas = ['Descripcion', 'Cantidad', 'Precio'];
-  const datos = [
-    {
-      Descripcion: 'Deliciosa hamburguesa con queso y vegetales',
-      Cantidad: '3',
-      Precio: 'Q26.97'
-    },{}
-  ]
+import { useEffect, useState } from 'react';
+import GenerarFactura from './GenerarFactura';
+
+const Factura = ({cuenta}) => {
+  const columnas = ['descripcion', 'cantidad', 'precio'];
+  const [datos, setDatos] = useState([]);
+  const [cuentadata, setCuenta] = useState({nombre: null, direccion: null, nit: null})
+  const [total, setTotal] = useState(0)
+  const setValue = (newData) => {
+    setCuenta({
+      ...cuentadata,
+      ...newData
+    });
+  };
+
+
+  const getPrecio = async () =>{
+    const fetchOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const response = await fetch(`https://cocina.web05.lol/cuentaprecio/${cuenta}`, fetchOptions)
+    if (response.ok){
+      const data = await response.json();
+      setTotal(data[0].total)
+      return
+    }
+  }
+
+
+  const getCliente = async () =>{
+    const fetchOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const response = await fetch(`https://cocina.web05.lol/clientebycuenta/${cuenta}`, fetchOptions)
+    if (response.ok){
+      const data = await response.json();
+      console.log(data)
+      setValue({
+        nombre: data[0].nombre,
+        direccion: data[0].direccion,
+        nit: data[0].nit
+      });
+      return
+    }
+  }
+
+  const getdatos = async () => {
+    const fetchOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const response = await fetch(`https://cocina.web05.lol/infocuenta/${cuenta}`, fetchOptions)
+    if (response.ok){
+      const data = await response.json();
+      setDatos(data)
+      return
+    }
+  }
+
+  useEffect ( () => {
+    getdatos()
+    getCliente()
+    getPrecio()
+  },[]) 
+
+
+  const handleClick = () => {
+    GenerarFactura(cuenta,cuentadata,datos,total)
+  };
+
+  
+
   return (
     <div className='sizesquare'>
       <div style={{flexDirection: 'row', display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end'}}>
-        <h1 className="titulo1" style={{marginRight: '20px'}}>FACTURA NO 1</h1>
+        <h1 className="titulo1" style={{marginRight: '20px'}}>FACTURA NO {cuenta}</h1>
       </div>
       <h1 className='titulo2' style={{marginLeft: '20px'}}>Informacion</h1>
       <div style={{flexDirection: 'row', display: 'flex'}}>
-        <h2 style={{color: 'white', fontSize: '16px', marginLeft: '16px'}}>Nombre: Mathew Cordero</h2>
-        <h2 style={{color: 'white', fontSize: '16px', marginLeft: '16px'}}>Direccion: 5ta calle B  57-63 Paraiso z 18</h2>
-        <h2 style={{color: 'white', fontSize: '16px', marginLeft: '16px'}}>NIT: 00000000000</h2>
+        <h2 style={{color: 'white', fontSize: '16px', marginLeft: '16px'}}>Nombre: {cuentadata.nombre}</h2>
+        <h2 style={{color: 'white', fontSize: '16px', marginLeft: '16px'}}>Direccion: {cuentadata.direccion}</h2>
+        <h2 style={{color: 'white', fontSize: '16px', marginLeft: '16px'}}>NIT: {cuentadata.nit}</h2>
       </div>
       <div style={{width: '730px', height: '350px', overflowY: 'auto'}}>
         <Tabla columnas={columnas} datos={datos} />
       </div>
       <div style={{flexDirection: 'row', display: 'flex', alignItems:'end'}}>
-        <TextoCustom titulo="Total: Q.0.00" fontSize="26px" lineWidth="290px"></TextoCustom>
-        <ButtonSmall name="Imprimir"></ButtonSmall>
+        <TextoCustom titulo={"Total: Q." +total} fontSize="26px" lineWidth="290px"></TextoCustom>
+        <ButtonSmall 
+          name="Imprimir"
+          onclick={handleClick}></ButtonSmall>
       </div>
      
     </div>

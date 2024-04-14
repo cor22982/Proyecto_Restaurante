@@ -149,7 +149,7 @@ const Cuentas = ({sesionState,setFormState,setCuenta}) => {
         ) : null
       }
      
-      
+      <ButtonSmall name='Terminar' ></ButtonSmall>
     </div>
   );
 }
