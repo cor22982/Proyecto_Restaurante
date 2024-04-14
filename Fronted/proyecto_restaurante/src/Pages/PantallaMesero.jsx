@@ -50,7 +50,7 @@ const PantallaMesero = () => {
           <MenuButton nombre='Encuesta' onclick={() => onclickMenu({ir_a: 'encuesta'})}/>
           <MenuButton nombre='Salir' onclick={onlogout}/>
           
-        </div>
+      </div>
       <div className='square-box'>
 
         {formState === 'sesiones' && <Sesiones setFormState={setFormState} setSesionState={setSesionState}/>}

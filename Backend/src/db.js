@@ -164,7 +164,24 @@ export async function terminarsesion (sesionid) {
 
 export async function getKitchenOrders(){
   try{
-    const result = await conn.query('select cuenta_id, comidas.nombre, fecha from orden_cocina join comidas on orden_cocina.plato = comidas.id where  DATE(orden_cocina.fecha) = CURRENT_DATE order by orden_cocina.fecha asc;')
+    const result = await conn.query(`
+      SELECT 
+          cuenta_id, 
+          comidas.nombre, 
+          TO_CHAR(EXTRACT(HOUR FROM orden_cocina.fecha), 'FM00') || ':' || TO_CHAR(EXTRACT(MINUTE FROM orden_cocina.fecha), 'FM00') AS hora_minutos, 
+          cuenta_comida.cantidad 
+      FROM 
+          orden_cocina 
+      JOIN 
+          comidas ON orden_cocina.plato = comidas.id 
+      JOIN 
+          cuenta_comida ON cuenta_comida.comida = orden_cocina.plato 
+      WHERE 
+          DATE(orden_cocina.fecha) = CURRENT_DATE 
+          AND cuenta_comida.cuenta = orden_cocina.cuenta_id 
+      ORDER BY 
+          hora_minutos ASC;
+`   );
     return result.rows
   }
   catch(error){
