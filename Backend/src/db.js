@@ -164,7 +164,7 @@ export async function terminarsesion (sesionid) {
 
 export async function getKitchenOrders(){
   try{
-    const result = await conn.query('select cuenta_id, comidas.nombre, fecha from orden_cocina join comidas on orden_cocina.plato = comidas.id where orden_cocina.fecha = DATE(orden_cocina.fecha ) = CURRENT_DATE order by orden_cocina.fecha asc;')
+    const result = await conn.query('select cuenta_id, comidas.nombre, fecha from orden_cocina join comidas on orden_cocina.plato = comidas.id where  DATE(orden_cocina.fecha) = CURRENT_DATE order by orden_cocina.fecha asc;')
     return result.rows
   }
   catch(error){
@@ -174,7 +174,7 @@ export async function getKitchenOrders(){
 }
 
 export async function getBarOrders(){
-  const result = await conn.query('select cuenta_id, comidas.nombre, fecha from orden_cocina join comidas on orden_bar.bebida = comidas.id where orden_bar.fecha = DATE(orden_bar.fecha ) = CURRENT_DATE;')
+  const result = await conn.query('select cuenta_id, comidas.nombre, fecha from orden_cocina join comidas on orden_bar.bebida = comidas.id where DATE(orden_bar.fecha) = CURRENT_DATE order by order_bar.fecha asc;')
   return result.rows
 
 }
