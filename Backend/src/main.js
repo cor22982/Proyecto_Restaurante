@@ -366,15 +366,15 @@ app.get('/quejaComida/:food_id', async (req, res) => {
 
 app.put ('/terminarcuenta/:cuentaid', async (req, res) =>{
   const cuentaid = req.params.cuentaid;
-  try{
-    const result = await terminarcuenta (cuentaid)
-    res.status(200)
-    res.json(result.rows)
-  }
-  catch(e){
+  const result = await terminarcuenta (cuentaid)
+  if (result.error){
     console.error('Error de servidor :(', e)
     res.status(500)
-    res.send({error: 'Error de servidor:('})
+    res.send({message: 'Error de servidor:('})
+  }
+  else {
+    res.status(200)
+    res.json({message: "Se ha terminado la cuenta"})
   }
 }) 
 
