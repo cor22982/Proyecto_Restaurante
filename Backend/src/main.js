@@ -25,7 +25,8 @@ import {
   insertpago ,
   clientebycuenta,
   infocuenta,
-  createNewEncuesta
+  createNewEncuesta,
+  terminarsesion
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -375,6 +376,17 @@ app.post('/encuesta', async (req, res) =>{
     console.log('Error de servidor :(', e)
     res.status(500).send('Error de servidor :/')
   
+  }
+})
+
+app.post ('/terminarsesion', async (req, res) => {
+  const { sesionid } = req.body;
+  const result = await  terminarsesion (sesionid);
+
+  if (result.error) {
+    res.status(401).json({ message: result.error });
+  } else {
+    res.status(200).json({ message: 'Se ha terminado la sesion' });
   }
 })
 

@@ -154,3 +154,9 @@ export async function createNewEncuesta(client, employee, kindness, accuracy){
   const result = await conn.query('insert into encuesta(cliente, personal, amabilidad, exactitud) values ($1,$2,$3,$4);',[client,parseInt(employee),parseInt(kindness),parseInt(accuracy)])
   return result 
 }
+
+
+export async function terminarsesion (sesionid) {
+  const result = await conn.query('select terminar_sesion(14);', [parseInt(sesionid)])
+  return result
+}
