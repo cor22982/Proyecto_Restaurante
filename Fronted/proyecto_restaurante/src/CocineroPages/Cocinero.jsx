@@ -61,7 +61,7 @@ const Cocinero = () => {
       <CheckboxCustom
        accion={() => handleClick(fila.plato,fila.cuenta_id)}></CheckboxCustom>
     );
-   };
+  };
 
   const handleClick = async (plato,cuenta) => {
     setValue({

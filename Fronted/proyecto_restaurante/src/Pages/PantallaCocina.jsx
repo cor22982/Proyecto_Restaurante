@@ -13,7 +13,7 @@ const PantallaCocina = () => {
   const onlogout = () => {
     setLoggedIn(false)
     window.location.reload();
-  }
+  } 
 
   return (
 

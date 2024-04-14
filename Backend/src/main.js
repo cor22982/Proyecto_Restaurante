@@ -465,6 +465,20 @@ app.delete('/deleteordencocina', async (req, res) =>{
   }
 })
 
+app.delete('/deleteordenbar', async (req, res) =>{
+  const { bebidaid, cuentaid } = req.body;
+  try{
+    const result = await terminarodenbar (bebidaid, cuentaid)
+    res.status(200)
+    res.json(result.rows)
+  }
+  catch(e){
+    console.error('Error de servidor :(', e)
+    res.status(500)
+    res.send({error: 'Error de servidor:('})
+  }
+})
+
 
 app.use((req, res) => {
   res.status(501).json({ error: 'Método no implementado' })

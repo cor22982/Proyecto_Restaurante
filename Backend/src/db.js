@@ -229,3 +229,10 @@ export async function terminarodencocina (platoid, cuentaid) {
   return result
 }
 
+
+
+export async function terminarodenbar (bebidaid, cuentaid) {
+  const result = await conn.query('delete from orden_bar where bebida = $1 and cuenta_id = $2;',[parseInt(bebidaid),parseInt(cuentaid)])
+  return result
+}
+

@@ -9,7 +9,7 @@ const Bar = () => {
   const [bebida, setBebida] = useState({bebidaid: '', cuentaid: ''})
   const [errorMessage, setErrorMessage] = useState('')
   const [datos , setDatos] = useState([]);
-
+  const columnas = ['cuenta_id', 'bebida','nombre', 'hora_minutos', 'cantidad'];
 
   const setValue = (newData) => {
     setBebida({
@@ -17,6 +17,7 @@ const Bar = () => {
       ...newData
     });
   };
+
 
   const getbebida = async () =>{
     const fetchOptions = {
@@ -33,10 +34,18 @@ const Bar = () => {
   }
 
   useEffect ( () => {
-    getcomida()
+    getbebida()
   },[]) 
 
-  const columnas = ['cuenta_id', 'bebida','nombre', 'hora_minutos', 'cantidad'];
+
+  const handleClick = async (bebida,cuenta) => {
+    setValue({
+      bebidaid: bebida,
+      cuentaid: cuenta
+    });
+  };
+
+  
   
   const renderBoton = (fila) => {
     return (
@@ -45,7 +54,23 @@ const Bar = () => {
     );
   };
 
+
+
+
   return (
+    <div className='sizesquare'>
+      <h1 className="titulo1">ORDENES</h1>
+      <div style={{width: '730px', height: '450px', overflowY: 'auto'}}>
+        <TablaBotones columnas={columnas} datos={datos} renderBoton={renderBoton} />
+      </div>
+      {
+        errorMessage !== '' ? (
+          <div className='error-message' onClick={() => setErrorMessage('')}>
+            {errorMessage}
+          </div>
+        ) : null
+      }
+    </div>
 
   );
 }
