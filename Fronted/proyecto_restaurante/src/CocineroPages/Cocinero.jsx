@@ -6,6 +6,34 @@ import CheckboxCustom from '../Components/CheckboxCustom';
 import { useEffect, useState } from 'react';
 const Cocinero = () => {
 
+  const [plato, setPlato] = useState({platoid: '', cuentaid: ''})
+  const [errorMessage, setErrorMessage] = useState('')
+
+
+  const setValue = (newData) => {
+    setPlato({
+      ...plato,
+      ...newData
+    });
+  };
+
+
+  const deletecomida = async () => {
+    const fetchOptions = {
+      method: 'DELETE',
+      body: JSON.stringify(plato),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const response = await fetch('https://cocina.web05.lol/deleteordencocina', fetchOptions);  
+    if (response.ok){
+      setErrorMessage('Se ha preparado este plato')
+      return
+    }
+    setErrorMessage('No se ha logrado notificar su preparacion')
+  }
+
   const [datos , setDatos] = useState([]);
   const getcomida = async () =>{
     const fetchOptions = {
@@ -25,19 +53,27 @@ const Cocinero = () => {
     getcomida()
   },[]) 
 
-  const columnas = ['cuenta_id', 'nombre', 'hora_minutos', 'cantidad'];
+  const columnas = ['cuenta_id', 'plato','nombre', 'hora_minutos', 'cantidad'];
   
 
   const renderBoton = (fila) => {
     return (
       <CheckboxCustom
-       accion={() => handleClick(fila.cuenta_id)}></CheckboxCustom>
+       accion={() => handleClick(fila.plato,fila.cuenta_id)}></CheckboxCustom>
     );
   };
 
-  const handleClick = (nombre) => {
-    alert(`Hola ${nombre}!`);
+  const handleClick = async (plato,cuenta) => {
+    setValue({
+      platoid: plato,
+      cuentaid: cuenta
+    });
+    await deletecomida();
+    getcomida()
   };
+
+  
+
 
   return (
     <div className='sizesquare'>
@@ -45,6 +81,13 @@ const Cocinero = () => {
       <div style={{width: '730px', height: '450px', overflowY: 'auto'}}>
         <TablaBotones columnas={columnas} datos={datos} renderBoton={renderBoton} />
       </div>
+      {
+        errorMessage !== '' ? (
+          <div className='error-message' onClick={() => setErrorMessage('')}>
+            {errorMessage}
+          </div>
+        ) : null
+      }
       
     </div>
   );
