@@ -25,10 +25,11 @@ const Factura = ({cuenta}) => {
         'Content-Type': 'application/json'
       }
     };
-    const response = await fetch(`https://cocina.web05.lol/cuentaprecio/${cuenta}`, fetchOptions)
+    const response = await fetch(`https://cocina.web05.lol/cuentapreciosinpropina/${cuenta}`, fetchOptions)
     if (response.ok){
       const data = await response.json();
-      setTotal(data[0].total)
+      console.log(data)
+      setTotal(data[0].costo_sin_propina)
       return
     }
   }

@@ -29,7 +29,8 @@ import {
   terminarsesion,
   getBarOrders,
   getKitchenOrders,
-  getpricewithoutpropina 
+  getpricewithoutpropina,
+  terminarcuenta 
 
 // eslint-disable-next-line import/extensions
 } from './db.js'
@@ -362,6 +363,20 @@ app.get('/quejaComida/:food_id', async (req, res) => {
     res.status(500).send('Error de servidor :/')
   }
 })
+
+app.put ('/terminarcuenta/:cuentaid', async () =>{
+  const cuentaid = req.params.cuentaid;
+  try{
+    const result = await terminarcuenta (cuentaid)
+    res.status(200)
+    res.json(result.rows)
+  }
+  catch(e){
+    console.error('Error de servidor :(', e)
+    res.status(500)
+    res.send({error: 'Error de servidor:('})
+  }
+}) 
 
 app.get('/quejaCliente/:client_id', async (req, res) => {
   const client_id = req.params.client_id
