@@ -5,7 +5,7 @@ import ButtonSmall from '../Components/ButtonSmall';
 import { useEffect, useState } from 'react';
 import GenerarFactura from './GenerarFactura';
 
-const Factura = ({cuenta}) => {
+const Factura = ({cuenta,setFormState}) => {
   const columnas = ['descripcion', 'cantidad', 'precio'];
   const [datos, setDatos] = useState([]);
   const [cuentadata, setCuenta] = useState({nombre: null, direccion: null, nit: null})
@@ -77,8 +77,26 @@ const Factura = ({cuenta}) => {
   },[]) 
 
 
+  const terminarcuenta = async ()  => {
+    const fetchOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const response = await fetch(`https://cocina.web05.lol/terminarcuenta/${cuenta}`, fetchOptions)
+    if (response.ok){
+      const data = await response.json();
+      console.log(data.message)
+      return
+    }
+    console.log(data.message)
+  }
+
   const handleClick = () => {
     GenerarFactura(cuenta,cuentadata,datos,total)
+    terminarcuenta()
+    setFormState('cuentas')
   };
 
   

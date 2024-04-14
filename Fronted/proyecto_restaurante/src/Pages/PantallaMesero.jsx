@@ -61,7 +61,7 @@ const PantallaMesero = () => {
         {formState === 'cuenta_unica' && <CuentaUnica cuenta={cuenta}  setFormState={setFormState}></CuentaUnica>}
         {formState === 'pedido' && <Pedido cuenta={cuenta} setFormState={setFormState}></Pedido>}
         {formState === 'cliente' && <Cliente setFormState={setFormState} cuentaid={cuenta}></Cliente>}
-        {formState === 'factura' && <Factura cuenta={cuenta}></Factura>}
+        {formState === 'factura' && <Factura cuenta={cuenta} setFormState={setFormState} ></Factura>}
       </div>
     </div>
   ) ;

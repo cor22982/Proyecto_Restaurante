@@ -56,7 +56,7 @@ export async function insertfirstCuenta (sesionid) {
 }
 
 export async function getCuentasIDbysesion (sesionid) {
-  const result = await conn.query('select id from cuenta where sesion = $1;',[parseInt(sesionid)]);
+  const result = await conn.query('select id,esta_abierta from cuenta where sesion = $1;',[parseInt(sesionid)]);
   return result
 }
 

@@ -33,3 +33,7 @@
   color: white;
   font-size: 25px;
 }
+
+.buttonsesion.disabled .icon {
+  color: rgb(158, 158, 158); /* Cambia el color del icono a gris cuando el botón está deshabilitado */
+}
