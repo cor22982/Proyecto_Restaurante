@@ -364,7 +364,7 @@ app.get('/quejaComida/:food_id', async (req, res) => {
   }
 })
 
-app.put ('/terminarcuenta/:cuentaid', async () =>{
+app.put ('/terminarcuenta/:cuentaid', async (req, res) =>{
   const cuentaid = req.params.cuentaid;
   try{
     const result = await terminarcuenta (cuentaid)
