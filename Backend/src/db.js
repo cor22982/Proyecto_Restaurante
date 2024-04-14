@@ -167,6 +167,7 @@ export async function getKitchenOrders(){
     const result = await conn.query(`
       SELECT 
           cuenta_id, 
+          plato,
           comidas.nombre, 
           TO_CHAR(EXTRACT(HOUR FROM orden_cocina.fecha), 'FM00') || ':' || TO_CHAR(EXTRACT(MINUTE FROM orden_cocina.fecha), 'FM00') AS hora_minutos, 
           cuenta_comida.cantidad 
@@ -207,3 +208,10 @@ export async function terminarcuenta (cuentaid) {
   const result = await conn.query('UPDATE cuenta set esta_abierta = false, fecha_fin = now() where id = $1;',[parseInt(cuentaid)])
   return result
 }
+
+
+export async function terminarodencocina (platoid, cuentaid) {
+  const result = await conn.query('delete from orden_cocina where plato = $1 and cuenta_id = $2;',[parseInt(platoid),parseInt(cuentaid)])
+  return result
+}
+

@@ -25,7 +25,7 @@ const Cocinero = () => {
     getcomida()
   },[]) 
 
-  const columnas = ['cuenta_id', 'nombre', 'fecha'];
+  const columnas = ['cuenta_id', 'nombre', 'hora_minutos', 'cantidad'];
   
 
   const renderBoton = (fila) => {

@@ -113,3 +113,18 @@ $$ LANGUAGE plpgsql;
 
 
 select terminar_sesion(14);
+
+CREATE OR REPLACE FUNCTION delete_comida() 
+RETURNS TRIGGER AS 
+$BODY$
+BEGIN
+    UPDATE cuenta SET fecha_inicio = now() WHERE id = OLD.cuenta_id;
+    RETURN OLD;
+END;
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER delete_comida_for_orden
+AFTER DELETE ON orden_cocina
+FOR EACH ROW
+EXECUTE FUNCTION delete_comida();
