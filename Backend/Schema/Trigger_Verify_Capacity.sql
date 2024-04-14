@@ -82,7 +82,7 @@ select insertar_comidas_en_orden(14);
     
 CREATE OR REPLACE FUNCTION terminar_sesion(sesion_id INT) RETURNS VOID AS $$
 DECLARE
-    propina numeric;
+    propinaa numeric;
     total numeric;
     propina_per_count numeric;
     total_cuenta numeric;
@@ -93,10 +93,10 @@ BEGIN
 
     -- Calcular la propina por cuenta
     SELECT SUM(c.total) * 0.15 / COUNT(*) INTO propina_per_count FROM cuenta c WHERE c.sesion = sesion_id;
-    propina := 0.15 * total;
+    propinaa := 0.15 * total;
 
     -- Actualizar la sesión con la fecha de fin, monto total y propina
-    UPDATE sesion SET fecha_fin = now(), monto_total = total, sesion.propina = propina WHERE id = sesion_id;
+    UPDATE sesion SET fecha_fin = now(), monto_total = total, propina = propinaa WHERE id = sesion_id;
 
     -- Obtener los ids de las cuentas asociadas a la sesión
     FOR cuenta_id IN SELECT c.id FROM cuenta c WHERE c.sesion = sesion_id LOOP
@@ -108,6 +108,7 @@ BEGIN
 
 END;
 $$ LANGUAGE plpgsql;
+
 
 
 
