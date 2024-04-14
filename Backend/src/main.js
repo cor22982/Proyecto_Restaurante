@@ -372,6 +372,7 @@ app.post('/encuesta', async (req, res) =>{
     res.status(200).send(await createNewEncuesta(client, employee, kindness, accuracy))
   }
   catch(e){
+    console.log('Error de servidor :(', e)
     res.status(500).send('Error de servidor :/')
   
   }
