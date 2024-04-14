@@ -8,7 +8,8 @@ import React, { useEffect,useState } from 'react';
 
 const Encuesta = () => {
   const [username, setUsername] = useState('');
-  const [data, setData] = useState({client: '', employee: '', kindness: '', accuracy: ''})
+  const [data, setData] = useState({client: '', token: '', kindness: '', accuracy: ''})
+  const [errorMessage, setErrorMessage] = useState('')
 
   const setValue = (name, value) => {
     setData({
@@ -16,18 +17,25 @@ const Encuesta = () => {
       [name]: value
     })
   }
-  console.table(data)
+  
   
   const clickcheck = (value) => {
     setValue('kindness',value)  
   }
 
   const clickcheck2 = (value) => {
-    setValue('accuracy',value)  
+    setValue('accuracy',value) 
+    
+  }
+
+  const getToken = () => {
+    setValue('token', token)   
   }
 
 
   const token = localStorage.getItem('accessToken')
+  
+  
   useEffect(() => {
     const sendDataToApi = async () => {
       const body = { }
@@ -49,7 +57,26 @@ const Encuesta = () => {
     }
 
     sendDataToApi();
+    getToken();
   }, [token]);
+
+  const enviarencuesta = async () => {
+    const fetchOptions = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const response = await fetch('https://cocina.web05.lol/encuesta', fetchOptions);
+    if (response.ok) {
+      setErrorMessage('Se envio la encuesta correctamente')
+      return;
+    }
+    setErrorMessage('Error Enviar encuesta')
+  }
+
   return (
     <div className='sizesquare'>
       <h1 className="titulo1" style={{marginRight: '20px'}}>ENCUESTA ATENCION AL CLIENTE</h1>
@@ -117,7 +144,16 @@ const Encuesta = () => {
           accion={clickcheck2} 
           valor={"5"}></CheckboxCustom>
       </div>
-      <ButtonSmall name='ENTREGAR'></ButtonSmall>
+      <ButtonSmall 
+        name='ENTREGAR'
+        onclick={enviarencuesta}></ButtonSmall>
+      {
+        errorMessage !== '' ? (
+          <div className='error-message' onClick={() => setErrorMessage('')}>
+            {errorMessage}
+          </div>
+        ) : null
+      }
     </div>
   );
 }
