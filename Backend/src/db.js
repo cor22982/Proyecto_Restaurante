@@ -192,7 +192,20 @@ export async function getKitchenOrders(){
 }
 
 export async function getBarOrders(){
-  const result = await conn.query('select cuenta_id, comidas.nombre, fecha from orden_bar join comidas on orden_bar.bebida = comidas.id where DATE(orden_bar.fecha) = CURRENT_DATE order by orden_bar.fecha asc;')
+  const result = await conn.query(`
+    select cuenta_id, 
+    comidas.nombre, 
+    TO_CHAR(EXTRACT(HOUR FROM orden_bar.fecha), 'FM00') || ':' || TO_CHAR(EXTRACT(MINUTE FROM orden_bar.fecha), 'FM00') AS hora_minutos,
+    cuenta_comida.cantidad  
+    from 
+      orden_bar 
+    join 
+      comidas on orden_bar.bebida = comidas.id 
+    JOIN 
+      cuenta_comida ON cuenta_comida.comida = orden_bar.bebida
+    where 
+      DATE(orden_bar.fecha) = CURRENT_DATE 
+      order by orden_bar.fecha asc;`)
   return result.rows
 
 }
