@@ -25,7 +25,9 @@ import {
   insertpago ,
   clientebycuenta,
   infocuenta,
-  createNewEncuesta
+  createNewEncuesta,
+  getBarOrders,
+  getKitchenOrders
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -377,6 +379,27 @@ app.post('/encuesta', async (req, res) =>{
   
   }
 })
+
+app.get('/barOrders', async (req, res) => {
+  try{
+    res.status(200).json(await getBarOrders())
+  }
+  catch(e){
+    console.error('Error de servidor :(', e)
+    res.status(500).send('Error de servidor :/')
+  }
+})
+
+app.get('/kitchenOrders', async (req, res) => {
+  try{
+    res.status(200).json(await getKitchenOrders())
+  }
+  catch(e){
+    console.error('Error de servidor :(', e)
+    res.status(500).send('Error de servidor :/')
+  }
+})
+
 
 
 app.use((req, res) => {
