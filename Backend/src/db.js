@@ -174,7 +174,7 @@ export async function getKitchenOrders(){
 }
 
 export async function getBarOrders(){
-  const result = await conn.query('select cuenta_id, comidas.nombre, fecha from orden_cocina join comidas on orden_bar.bebida = comidas.id where DATE(orden_bar.fecha) = CURRENT_DATE order by order_bar.fecha asc;')
+  const result = await conn.query('select cuenta_id, comidas.nombre, fecha from orden_bar join comidas on orden_bar.bebida = comidas.id where DATE(orden_bar.fecha) = CURRENT_DATE order by orden_bar.fecha asc;')
   return result.rows
 
 }
