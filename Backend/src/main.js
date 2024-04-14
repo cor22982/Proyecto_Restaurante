@@ -31,7 +31,8 @@ import {
   getKitchenOrders,
   getpricewithoutpropina,
   terminarcuenta,
-  terminarodencocina  
+  terminarodencocina  ,
+  terminarodenbar
 
 // eslint-disable-next-line import/extensions
 } from './db.js'
