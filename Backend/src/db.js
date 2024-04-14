@@ -140,4 +140,13 @@ export async function insertpago (monto,forma,cliente,cuenta) {
   return result
 }
 
+export async function clientebycuenta (cuentaid) {
+  const result = await conn.query('select cliente.nit, cliente.nombre, cliente.direccion from cuenta join cliente on cliente.nit = cuenta.cliente where cuenta.id = $1;', [parseInt(cuentaid)])
+  return result
+}
+
+export async function infocuenta (cuentaid) {
+  const result = await conn.query('select comidas.descripcion, cuenta_comida.cantidad, comidas.precio*cuenta_comida.cantidad as precio from cuenta_comida join comidas on comidas.id = cuenta_comida.comida where cuenta_comida.cuenta = $1;', [parseInt(cuentaid)])
+  return result
+}
 

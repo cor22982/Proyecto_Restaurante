@@ -3,7 +3,7 @@ import './Dropboxsmall.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
-const Dropboxsmall  = ({nombre, lista}) => {
+const Dropboxsmall  = ({nombre, lista,onChange}) => {
   const [dropdown, setDropdown] = useState(false);
   const [tituloSeleccionado, setTituloSeleccionado] = useState(nombre);
   const abrirCerrar = () => {
@@ -13,6 +13,7 @@ const Dropboxsmall  = ({nombre, lista}) => {
     
     setTituloSeleccionado(item);
     setDropdown(false); // Cerrar el Dropdown después de seleccionar un item
+    onChange(item)
   };
 
   return (

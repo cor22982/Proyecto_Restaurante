@@ -1,9 +1,13 @@
 import './Titulo1.css'
 import Tabla from '../Components/Tabla';
+import '../Components/SesionComponet.css'
 import TextoCustom from '../Components/TextoCustom';
 import ButtonSmall from '../Components/ButtonSmall';
 import { useEffect,useState } from 'react';
-const Pedido = ({cuenta}) => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
+const Pedido = ({cuenta, setFormState}) => {
 
 
   const [datos, setDatos] = useState([]);
@@ -44,6 +48,10 @@ const Pedido = ({cuenta}) => {
     }
     setErrorMessage(data.message)
   }
+
+  const back = () =>{
+    setFormState('cuenta_unica')
+  }
   useEffect(()=> {
     const getPedidos = async () => {
       const fetchOptions = {
@@ -69,6 +77,9 @@ const Pedido = ({cuenta}) => {
   return (
     <div className='sizesquare'>
       <div style={{flexDirection: 'row', display: 'flex'}}>
+        <button className='buttonsesion'  style={{marginLeft: '0px'}} onClick={back}>
+          <FontAwesomeIcon icon={faArrowLeft} className="icon"/>
+        </button>
         <h1 className="titulo1" style={{marginLeft: '20px'}}>Pedido {cuenta}</h1>
       </div>
       <div style={{width: '730px', height: '400px', overflowY: 'auto'}}>

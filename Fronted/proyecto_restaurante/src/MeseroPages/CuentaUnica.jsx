@@ -1,9 +1,11 @@
 import './Titulo1.css'
+import '../Components/SesionComponet.css'
 import TextoCustom from '../Components/TextoCustom';
 import ButtonSmall from '../Components/ButtonSmall';
 import TextInputSmall from '../Components/TextInputSmall';
-import { fa1,faBowlFood } from '@fortawesome/free-solid-svg-icons';
+import { fa1,faBowlFood,faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useEffect,useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CuentaUnica = ({cuenta,setFormState}) => {
 
@@ -16,8 +18,7 @@ const CuentaUnica = ({cuenta,setFormState}) => {
     })
   }
 
-  console.table(form)
-  console.log(cuenta)
+  
 
 
   const getPrecio = async () =>{
@@ -60,6 +61,13 @@ const CuentaUnica = ({cuenta,setFormState}) => {
     setFormState('pedido')
   }
 
+  const back = () =>{
+    setFormState('cuentas')
+  }
+
+  const handleClickcliente = () => {
+    setFormState('cliente')
+  }
   useEffect(() => {
     getPrecio();
   }, [])
@@ -68,8 +76,10 @@ const CuentaUnica = ({cuenta,setFormState}) => {
   return (
     <div className='sizesquare'>
       <div style={{flexDirection: 'row', display: 'flex'}}>
+        <button className='buttonsesion'  style={{marginLeft: '0px'}} onClick={back}>
+          <FontAwesomeIcon icon={faArrowLeft} className="icon"/>
+        </button>
         <h1 className="titulo1" style={{marginLeft: '20px'}}>Cuenta {cuenta}</h1>
-        
         
       </div>
 
@@ -99,7 +109,7 @@ const CuentaUnica = ({cuenta,setFormState}) => {
       </div>
       <div style={{flexDirection: 'row', display: 'flex', alignItems:'end'}}>
         <TextoCustom titulo={'Total: Q.'+ form.price} fontSize="36px" lineWidth="290px"></TextoCustom>
-        <ButtonSmall name="Pagar"></ButtonSmall>
+        <ButtonSmall name="Pagar" onclick={handleClickcliente}></ButtonSmall>
         <ButtonSmall name="Ver Pedido" onclick={handleClick}></ButtonSmall>
       </div>
       

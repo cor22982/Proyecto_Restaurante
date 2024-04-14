@@ -34,8 +34,17 @@
 }
 
 
-.error-message{
-  color:rgb(255, 208, 208);
-  margin-left: 10px;
-  font-size: 19px;
+.error-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: red;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
 }
+

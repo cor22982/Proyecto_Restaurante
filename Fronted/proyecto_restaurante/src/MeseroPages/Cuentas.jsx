@@ -1,10 +1,12 @@
 import './Titulo1.css'
+import '../Components/SesionComponet.css'
 import { useEffect,useState } from 'react'
 import SesionComponet from '../Components/SesionComponet'
 import ButtonSmall from '../Components/ButtonSmall'
 import TextInputSmall from '../Components/TextInputSmall'
 import TextoCustom from '../Components/TextoCustom'
-import { faTable } from '@fortawesome/free-solid-svg-icons';
+import { faTable,faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Cuentas = ({sesionState,setFormState,setCuenta}) => {
   console.log(sesionState)
@@ -56,7 +58,11 @@ const Cuentas = ({sesionState,setFormState,setCuenta}) => {
   const clickcomponet = ({item}) => {
     setCuenta(item)
     setFormState('cuenta_unica')
-  } 
+  }
+  
+  const back = () =>{
+    setFormState('sesiones')
+  }
 
   useEffect(() => {
     getCuentas();
@@ -102,7 +108,13 @@ const Cuentas = ({sesionState,setFormState,setCuenta}) => {
   
   return (
     <div className='sizesquare'>
-      <h1 className="titulo1">Sesion {sesionState}</h1>
+      <div style={{display: 'flex',flexDirection: 'row' , alignItems: 'center'}}>
+        <button className='buttonsesion'  style={{marginLeft: '0px'}} onClick={ back}>
+          <FontAwesomeIcon icon={faArrowLeft} className="icon" />
+        </button>
+        <h1 className="titulo1">Sesion {sesionState}</h1>
+      </div>
+      
       <ul className='lista' style={{height: '210px'}}>
         {cuentas.map ((cuenta) => (
           <SesionComponet
