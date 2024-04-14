@@ -174,7 +174,7 @@ export async function getKitchenOrders(){
 }
 
 export async function getBarOrders(){
-  const result = await conn.query('select cuenta_id, comidas.nombre, fecha from orden_bar join comidas on orden_bar.bebida = comidas.id where DATE(orden_bar.fecha) = CURRENT_DATE order by orden_bar.fecha asc;')
+  const result = await conn.query('select cuenta_id, comidas.nombre, fecha from orden_cocina join comidas on orden_bar.bebida = comidas.id where DATE(orden_bar.fecha) = CURRENT_DATE order by order_bar.fecha asc;')
   return result.rows
 
 }
@@ -182,6 +182,6 @@ export async function getBarOrders(){
 export async function getpricewithoutpropina (cuentaid) {
   const result1 = await conn.query('select sesion from cuenta where id = $1;', [parseInt(cuentaid)])
   const sesion = result1.rows[0].sesion;  
-  const result2 = await conn.query('select total - (SELECT sesion.propina/(select count(*) from cuenta where sesion = 10) from sesion where id = 10) from cuenta where id = 13;', [parseInt(sesion), parseInt(cuentaid)])
+  const result2 = await conn.query('select total - (SELECT sesion.propina/(select count(*) from cuenta where sesion = $1) from sesion where id = $1) from cuenta where id = $2;', [parseInt(sesion), parseInt(cuentaid)])
   return result2
 }
