@@ -142,6 +142,7 @@ const Cuentas = ({sesionState,setFormState,setCuenta}) => {
             key={cuenta.id}
             nombre={'Cuenta ' + cuenta.id}
             onclick={() => clickcomponet({item: cuenta.id})}
+            disable={cuenta.esta_abierta ? false : true}
             ></SesionComponet>
         ))}
       </ul>

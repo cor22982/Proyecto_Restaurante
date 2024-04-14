@@ -34,6 +34,7 @@
   font-size: 25px;
 }
 
-.buttonsesion.disabled .icon {
-  color: rgb(158, 158, 158); /* Cambia el color del icono a gris cuando el botón está deshabilitado */
+.buttonsesion .disabled-icon {
+  color: rgb(148, 148, 148); /* Cambia el color del icono a gris cuando el botón está deshabilitado */
+  font-size: 25px;
 }
