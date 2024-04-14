@@ -24,7 +24,8 @@ import {
   insertcliente,
   insertpago ,
   clientebycuenta,
-  infocuenta
+  infocuenta,
+  createNewEncuesta
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -362,6 +363,17 @@ app.get('/quejaEmpleado/:employee_id', async (req, res) => {
   catch(e){
     console.error('Error de servidor :(', e)
     res.status(500).send('Error de servidor :/')
+  }
+})
+
+app.post('/encuesta', async (req, res) =>{
+  const {client, employee, kindness, accuracy} = req.body
+  try{
+    res.status(200).send(await createNewEncuesta(client, employee, kindness, accuracy))
+  }
+  catch(e){
+    res.status(500).send('Error de servidor :/')
+  
   }
 })
 
