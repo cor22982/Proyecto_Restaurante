@@ -401,9 +401,14 @@ app.get('/quejaEmpleado/:employee_id', async (req, res) => {
 })
 
 app.post('/encuesta', async (req, res) =>{
-  const {client, employee, kindness, accuracy} = req.body
+
+  
+  const {client, token, kindness, accuracy} = req.body
+  const payload = decodeToken(token)
+  const { id } = payload;
+
   try{
-    res.status(200).send(await createNewEncuesta(client, employee, kindness, accuracy))
+    res.status(200).send(await createNewEncuesta(client, id, kindness, accuracy))
   }
   catch(e){
     console.log('Error de servidor :(', e)

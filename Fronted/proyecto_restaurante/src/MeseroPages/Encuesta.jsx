@@ -8,6 +8,25 @@ import React, { useEffect,useState } from 'react';
 
 const Encuesta = () => {
   const [username, setUsername] = useState('');
+  const [data, setData] = useState({client: '', employee: '', kindness: '', accuracy: ''})
+
+  const setValue = (name, value) => {
+    setData({
+      ...data,
+      [name]: value
+    })
+  }
+  console.table(data)
+  
+  const clickcheck = (value) => {
+    setValue('kindness',value)  
+  }
+
+  const clickcheck2 = (value) => {
+    setValue('accuracy',value)  
+  }
+
+
   const token = localStorage.getItem('accessToken')
   useEffect(() => {
     const sendDataToApi = async () => {
@@ -41,6 +60,8 @@ const Encuesta = () => {
           icono={faIdCard}
           placeholder="NIT"
           type="text"
+          value={data.client}
+          onChange={(value)=> setValue('client',value)} 
           />
       </div>
       <TextoCustom 
@@ -48,11 +69,26 @@ const Encuesta = () => {
         fontSize="17px"
         lineWidth="650px"></TextoCustom>
       <div style={{display: 'flex', flexDirection: 'row', justifyContent:'center'}}>
-        <CheckboxCustom name='1'></CheckboxCustom>
-        <CheckboxCustom name='2'></CheckboxCustom>
-        <CheckboxCustom name='3'></CheckboxCustom>
-        <CheckboxCustom name='4'></CheckboxCustom>
-        <CheckboxCustom name='5'></CheckboxCustom>
+        <CheckboxCustom 
+          name='1'
+          accion={clickcheck} 
+          valor={"1"}></CheckboxCustom>
+        <CheckboxCustom 
+          name='2'
+          accion={clickcheck} 
+          valor={"2"}></CheckboxCustom>
+        <CheckboxCustom 
+          name='3'
+          accion={clickcheck} 
+          valor={"3"}></CheckboxCustom>
+        <CheckboxCustom 
+          name='4'
+          accion={clickcheck} 
+          valor={"4"}></CheckboxCustom>
+        <CheckboxCustom 
+          name='5'
+          accion={clickcheck} 
+          valor={"5"}></CheckboxCustom>
       </div>
       
       <TextoCustom 
@@ -60,11 +96,26 @@ const Encuesta = () => {
         fontSize="17px"
         lineWidth="700px"></TextoCustom>
       <div style={{display: 'flex', flexDirection: 'row', justifyContent:'center'}}>
-        <CheckboxCustom name='1'></CheckboxCustom>
-        <CheckboxCustom name='2'></CheckboxCustom>
-        <CheckboxCustom name='3'></CheckboxCustom>
-        <CheckboxCustom name='4'></CheckboxCustom>
-        <CheckboxCustom name='5'></CheckboxCustom>
+      <CheckboxCustom 
+          name='1'
+          accion={clickcheck2} 
+          valor={"1"}></CheckboxCustom>
+        <CheckboxCustom 
+          name='2'
+          accion={clickcheck2} 
+          valor={"2"}></CheckboxCustom>
+        <CheckboxCustom 
+          name='3'
+          accion={clickcheck2} 
+          valor={"3"}></CheckboxCustom>
+        <CheckboxCustom 
+          name='4'
+          accion={clickcheck2} 
+          valor={"4"}></CheckboxCustom>
+        <CheckboxCustom 
+          name='5'
+          accion={clickcheck2} 
+          valor={"5"}></CheckboxCustom>
       </div>
       <ButtonSmall name='ENTREGAR'></ButtonSmall>
     </div>
