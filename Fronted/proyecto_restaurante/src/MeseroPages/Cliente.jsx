@@ -62,7 +62,8 @@ const Cliente = ({setFormState, cuentaid}) => {
     const response = await fetch('https://cocina.web05.lol/insertpagos', fetchOptions);
     if (response.ok) {
       const data = await response.json();
-      getPrecio();
+      const total = precio
+      setPrecio(total - parseFloat(dataState.monto))
       setErrorMessage(data.message)
       return;
     }

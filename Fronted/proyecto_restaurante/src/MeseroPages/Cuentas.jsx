@@ -105,7 +105,28 @@ const Cuentas = ({sesionState,setFormState,setCuenta}) => {
       }
       setErrorMessage(data.message)
     }
-  
+    
+    const terminarsesion = async () => {
+      const body = { sesionid: sesionState}
+      const fetchOptions = {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      const response = await fetch('https://cocina.web05.lol/terminarsesion', fetchOptions);
+      const data = await response.json();
+      if (response.ok) {
+        getCapacidad ();
+        console.log('succesoninsert');
+        setErrorMessage(data.message)
+        return;
+      }
+      setErrorMessage(data.message)
+    }
+
+    
   return (
     <div className='sizesquare'>
       <div style={{display: 'flex',flexDirection: 'row' , alignItems: 'center'}}>
@@ -149,7 +170,7 @@ const Cuentas = ({sesionState,setFormState,setCuenta}) => {
         ) : null
       }
      
-      <ButtonSmall name='Terminar' ></ButtonSmall>
+      <ButtonSmall name='Terminar' onclick={terminarsesion}></ButtonSmall>
     </div>
   );
 }

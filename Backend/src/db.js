@@ -179,3 +179,9 @@ export async function getBarOrders(){
 
 }
 
+export async function getpricewithoutpropina (cuentaid) {
+  const result1 = await conn.query('select sesion from cuenta where id = $1;', [parseInt(cuentaid)])
+  const sesion = result1.rows[0].sesion;  
+  const result2 = await conn.query('select total - (SELECT sesion.propina/(select count(*) from cuenta where sesion = 10) from sesion where id = 10) from cuenta where id = 13;', [parseInt(sesion), parseInt(cuentaid)])
+  return result2
+}
