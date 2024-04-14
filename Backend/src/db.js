@@ -150,3 +150,6 @@ export async function infocuenta (cuentaid) {
   return result
 }
 
+export async function createNewEncuesta(client, employee, kindness, accuracy){
+  const result = await conn.query('insert into encuesta(cliente, personal, amabilidad, exactitud) values ($1,$2,$3,$4);',[parseInt(client),employee,parseInt(kindness),parseInt(accuracy)])
+}
