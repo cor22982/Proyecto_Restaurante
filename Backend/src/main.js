@@ -26,7 +26,10 @@ import {
   clientebycuenta,
   infocuenta,
   createNewEncuesta,
-  terminarsesion
+  terminarsesion,
+  getBarOrders,
+  getKitchenOrders
+
 // eslint-disable-next-line import/extensions
 } from './db.js'
 
@@ -379,6 +382,7 @@ app.post('/encuesta', async (req, res) =>{
   }
 })
 
+
 app.post ('/terminarsesion', async (req, res) => {
   const { sesionid } = req.body;
   const result = await  terminarsesion (sesionid);
@@ -387,6 +391,27 @@ app.post ('/terminarsesion', async (req, res) => {
     res.status(401).json({ message: result.error });
   } else {
     res.status(200).json({ message: 'Se ha terminado la sesion' });
+  }
+})
+
+
+app.get('/barOrders', async (req, res) => {
+  try{
+    res.status(200).json(await getBarOrders())
+  }
+  catch(e){
+    console.error('Error de servidor :(', e)
+    res.status(500).send('Error de servidor :/')
+  }
+})
+
+app.get('/kitchenOrders', async (req, res) => {
+  try{
+    res.status(200).json(await getKitchenOrders())
+  }
+  catch(e){
+    console.error('Error de servidor :(', e)
+    res.status(500).send('Error de servidor :/')
   }
 })
 
