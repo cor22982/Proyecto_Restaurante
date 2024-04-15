@@ -95,6 +95,9 @@ export async function insertQueja(nit, reason, employee_id, food_id, rating) {
         // Handle the error or throw an exception
       }
     }
+    else {
+      result = await conn.query('INSERT INTO queja (nit_cliente, motivo, personal_id, comida, calificacion) VALUES ($1, $2, $3, $4, $5);', [nit, reason,parseInt(employee_id), parseInt(food_id), parseInt(rating)]);
+    }
     return result.rows;
   } catch (error) {
     console.error('Error inserting complaint:', error);
