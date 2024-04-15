@@ -350,7 +350,8 @@ app.get('/foodPrice', async (req, res) => {
 app.post('/quejas' , async (req, res) => {
   const { nit, reason, employee_id, food_id, rating } = req.body
   try{
-    res.status(200).send(await insertQueja(nit, reason, employee_id, food_id, rating))
+    await insertQueja(nit, reason, employee_id, food_id, rating)
+    res.status(200).send('Queja insertada :)')
   }
   catch(e){
     console.log('Error :(', e)
