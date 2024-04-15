@@ -85,10 +85,9 @@ export async function insertQueja(nit, reason, employee_id, food_id, rating) {
     let result
     if (food_id === '') {
       result = await conn.query('INSERT INTO queja (nit_cliente, motivo, calificacion) VALUES (?, ?, ?);', [nit, reason, rating]);
-    } else if (employee_id === '') {
+    }
+    if (employee_id === '') {
       result = await conn.query('INSERT INTO queja (nit_cliente, motivo, comida_id, calificacion) VALUES (?, ?, ?, ?);', [nit, reason, food_id, rating])
-    } else {
-      result = await conn.query('INSERT INTO queja (nit_cliente, motivo, personal_id, calificacion) VALUES (?, ?, ?, ?);', [nit, reason, parseInt(employee_id), rating])
     }
     return result
   } catch (error) {
