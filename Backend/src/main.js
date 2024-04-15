@@ -37,7 +37,8 @@ import {
   getHorarios,
   getTimeAVG,
   getQuejasByName,
-  getQuejasByFood
+  getQuejasByFood,
+  getEmployeesPerformance
 
 // eslint-disable-next-line import/extensions
 } from './db.js'
@@ -578,6 +579,14 @@ app.get('/quejasbyfood', async (req, res) => {
   }
 })
 
+app.get('/performance', async (req, res) => {
+  try {
+    res.status(200).json(await getEmployeesPerformance())
+  } catch (error) {
+    console.error('Error de servidor :(', error)
+    res.status(500).send('Error de servidor :/')
+  }
+})
 
 
 

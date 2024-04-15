@@ -279,3 +279,13 @@ export async function getQuejasByFood(fecha_inicio, fecha_fin){
   }
   
 }
+
+export async function getEmployeesPerformance(){
+  try{
+    const result = await conn.query("select p.nombre, DATE_TRUNC('month', e.fecha)as month, avg(e.amabilidad) as amabilidad, avg(e.exactitud) as exactitud from encuesta e join personal p on e.personal = p.id where fecha >= CURRENT_DATE - INTERVAL '6 months' group by p.nombre, month")
+    return result.rows
+  }
+  catch(error){
+    console.log(error)
+  }
+}
