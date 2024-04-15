@@ -349,6 +349,7 @@ app.get('/foodPrice', async (req, res) => {
 
 app.post('/quejas' , async (req, res) => {
   const { nit, reason, employee_id, food_id, rating } = req.body
+  console.log(nit, reason, employee_id, food_id, rating)
   try{
     await insertQueja(nit, reason, employee_id, food_id, rating)
     res.status(200).send('Queja insertada :)')
