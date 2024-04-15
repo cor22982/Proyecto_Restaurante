@@ -516,6 +516,7 @@ app.get('/horario', async (req, res) => {
     if (!fecha_inicio || isNaN(fecha_inicio.getTime()) || !fecha_fin || isNaN(fecha_fin.getTime())) {
       return res.status(400).json({ error: 'Las fechas proporcionadas son inválidas' });
     }
+    
     res.status(200).json(await getHorarios(fecha_inicio, fecha_fin))
   } catch (error) {
     console.error('Error de servidor :(', error)
