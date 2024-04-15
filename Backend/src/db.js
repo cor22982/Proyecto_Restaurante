@@ -237,7 +237,7 @@ export async function terminarodenbar (bebidaid, cuentaid) {
 }
 
 export async function getTiemposDeEspera(fecha_inicio, fecha_fin){
-  const result = await conn.query('SELECT c.nombre AS plato, COUNT(cc.id) AS total_pedidos FROM cuenta_comida cc JOIN comidas c ON cc.id_comida = c.id WHERE cc.fecha_pedido BETWEEN $1 AND $2 GROUP BY c.nombre ORDER BY total_pedidos DESC;', [fecha_inicio.toISOString(), fecha_fin.toISOString()])
+  const result = await conn.query('SELECT c.nombre AS plato, COUNT(*) AS total_pedidos FROM cuenta_comida cc JOIN comidas c ON cc.id_comida = c.id WHERE cc.fecha_pedido BETWEEN $1 AND $2 GROUP BY c.nombre ORDER BY total_pedidos DESC;', [fecha_inicio.toISOString(), fecha_fin.toISOString()])
   return result
 }
 
