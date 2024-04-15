@@ -268,3 +268,14 @@ export async function getQuejasByName(fecha_inicio, fecha_fin){
   }
   
 }
+
+export async function getQuejasByFood(fecha_inicio, fecha_fin){
+  try{
+    const result = await conn.query(' SELECT c.nombre AS COMIDA, COUNT(*) AS total_quejas FROM queja q JOIN comidas c ON c.id = q.comida WHERE DATE(q.fecha_hora) BETWEEN $1 AND $2 GROUP BY c.nombre ORDER BY count(*) desc', [fecha_inicio.toISOString(), fecha_fin.toISOString()])
+    return result
+  }
+  catch(error){
+    console.log(error)
+  }
+  
+}
