@@ -82,19 +82,44 @@ export async function insertMesaSesion(mesaid, sesionid) {
 
 export async function insertQueja(nit, reason, employee_id, food_id, rating) {
   try {
-    let result
+    let result;
     if (food_id === '' && employee_id !== '') {
-      result = await conn.query('INSERT INTO queja (nit_cliente, motivo, calificacion, personal_id) VALUES (?, ?, ?, ?);', [nit, reason, rating, employee_id]);
+      result = await conn.query('INSERT INTO queja (nit_cliente, motivo, calificacion, personal_id) VALUES ($1, $2, $3, $4);', [nit, reason, parseInt(rating), parseInt(employee_id)]);
     }
     if (employee_id === '' && food_id !== '') {
-      result = await conn.query('INSERT INTO queja (nit_cliente, motivo, comida, calificacion) VALUES (?, ?, ?, ?);', [nit, reason, food_id, rating])
+      // Check if food_id is not an empty string and is a valid integer
+      if (!isNaN(food_id)) {
+        result = await conn.query('INSERT INTO queja (nit_cliente, motivo, comida, calificacion) VALUES ($1, $2, $3, $4);', [nit, reason, parseInt(food_id), parseInt(rating)]);
+      } else {
+        console.error('Invalid food_id:', food_id);
+        // Handle the error or throw an exception
+      }
     }
-    return result
+    return result.rows;
   } catch (error) {
     console.error('Error inserting complaint:', error);
-    throw error
+    throw error;
   }
 }
+
+export async function insertQuejaforfood(nit, reason, food_id, rating){
+  try{
+    const result = await conn.query('insert into queja (nit_cliente, motivo, comida, calificacion) values (?, ?, ?, ?);',[nit,reason,parseInt(food_id),parseInt(rating)])
+    return result
+  }
+  catch(error){
+    console.log(error)
+    throw error
+  }
+  
+}
+
+export async function insertQuejaforemployee(nit, reason, employee_id, rating){
+  const result = await conn.query('insert into queja (nit_cliente, motivo, calificacion, personal_id) values ($1,$2,$3,$4);',[nit,reason,parseInt(rating),parseInt(employee_id)])
+  return result
+
+}
+
 
 
 
@@ -244,16 +269,48 @@ export async function terminarodenbar (bebidaid, cuentaid) {
 
 export async function getTiemposDeEspera(fecha_inicio, fecha_fin){
   const result = await conn.query('SELECT c.nombre AS plato, COUNT(*) AS total_pedidos FROM cuenta_comida cc JOIN comidas c ON cc.comida = c.id WHERE cc.fecha BETWEEN $1 AND $2 GROUP BY c.nombre ORDER BY total_pedidos DESC;', [fecha_inicio.toISOString(), fecha_fin.toISOString()])
-  return result
+  return result.rows
 }
 
 export async function getHorarios(fecha_inicio, fecha_fin){
   const result = await conn.query('SELECT EXTRACT(HOUR FROM cc.fecha) AS hora, COUNT(*) AS total_pedidos FROM cuenta_comida cc WHERE cc.fecha BETWEEN $1 AND $2 GROUP BY hora ORDER BY total_pedidos DESC', [fecha_inicio.toISOString(), fecha_fin.toISOString()])
-  return result
+  return result.rows
 }
 
 export async function getTimeAVG(fecha_inicio, fecha_fin){
   const result = await conn.query('select fechas.personas, avg(extract(epoch from (fechas.fecha_fin - fechas.fecha_inicio))/60) from (select * from sesion join (select ms.sesion, sum(m.capacidad) as personas from mesas m join mesas_sesion ms on ms.mesa = m.id group by ms.sesion) as cant on sesion.id = cant.sesion where sesion.fecha_fin is not null) as fechas where DATE(fechas.fecha_inicio) BETWEEN $1 and $2 and DATE(fechas.fecha_fin) BETWEEN $3 and $4 group by fechas.personas', [fecha_inicio.toISOString(), fecha_fin.toISOString(), fecha_inicio.toISOString(), fecha_fin.toISOString()])
-  return result
+  return result.rows
 }
 
+
+export async function getQuejasByName(fecha_inicio, fecha_fin){
+  try{
+    const result = await conn.query(' SELECT p.nombre AS persona, COUNT(*) AS total_quejas FROM queja q JOIN personal p ON q.personal_id = p.id WHERE DATE(q.fecha_hora) BETWEEN $1 AND $2 GROUP BY p.nombre ORDER BY count(*) desc', [fecha_inicio.toISOString(), fecha_fin.toISOString()])
+    return result.rows
+  }
+  catch(error){
+    console.log(error)
+  }
+  
+}
+
+export async function getQuejasByFood(fecha_inicio, fecha_fin){
+  try{
+    const result = await conn.query('SELECT c.nombre AS COMIDA, COUNT(*) AS total_quejas FROM queja q JOIN comidas c ON c.id = q.comida WHERE DATE(q.fecha_hora) BETWEEN $1 AND $2 GROUP BY c.nombre ORDER BY count(*) desc', [fecha_inicio.toISOString(), fecha_fin.toISOString()])
+    return result.rows
+  }
+  catch(error){
+    console.log(error)
+  }
+  
+}
+
+export async function getEmployeesPerformance(){
+  try{
+    const result = await conn.query("select p.nombre, DATE_TRUNC('month', e.fecha)as month, avg(e.amabilidad) as amabilidad, avg(e.exactitud) as exactitud from encuesta e join personal p on e.personal = p.id where fecha >= CURRENT_DATE - INTERVAL '6 months' group by p.nombre, month")
+    return result.rows
+  }
+  catch(error){
+    console.log(error)
+  }
+}

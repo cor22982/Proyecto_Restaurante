@@ -35,7 +35,12 @@ import {
   terminarodenbar,
   getTiemposDeEspera,
   getHorarios,
-  getTimeAVG
+  getTimeAVG,
+  getQuejasByName,
+  getQuejasByFood,
+  getEmployeesPerformance,
+  insertQuejaforfood,
+  insertQuejaforemployee
 
 // eslint-disable-next-line import/extensions
 } from './db.js'
@@ -344,10 +349,12 @@ app.get('/foodPrice', async (req, res) => {
   }
 })
 
-app.post('/queja' , async (req, res) => {
+app.post('/quejas' , async (req, res) => {
   const { nit, reason, employee_id, food_id, rating } = req.body
+  console.log(nit, reason, employee_id, food_id, rating)
   try{
-    res.status(200).send(await insertQueja(nit, reason, employee_id, food_id, rating))
+    await insertQueja(nit, reason, employee_id, food_id, rating)
+    res.status(200).send('Queja insertada :)')
   }
   catch(e){
     console.log('Error :(', e)
@@ -515,6 +522,7 @@ app.get('/horario', async (req, res) => {
     if (!fecha_inicio || isNaN(fecha_inicio.getTime()) || !fecha_fin || isNaN(fecha_fin.getTime())) {
       return res.status(400).json({ error: 'Las fechas proporcionadas son inválidas' });
     }
+    
     res.status(200).json(await getHorarios(fecha_inicio, fecha_fin))
   } catch (error) {
     console.error('Error de servidor :(', error)
@@ -530,9 +538,67 @@ app.get('/tiempoPromedio', async (req, res) => {
     if (!fecha_inicio || isNaN(fecha_inicio.getTime()) || !fecha_fin || isNaN(fecha_fin.getTime())) {
       return res.status(400).json({ error: 'Las fechas proporcionadas son inválidas' });
     }
+    const rows = await getQuejasByName(fecha_inicio, fecha_fin)
+    const data = rows.map(row => ({
+      personas: row.persona,
+      avg: row.total_quejas
+    }))
     res.status(200).json(await getTimeAVG(fecha_inicio, fecha_fin))
   } catch (error) {
     console.error('Error de servidor :(', error)
+    res.status(500).send('Error de servidor :/')
+  }
+})
+
+app.get('/quejasbyname', async (req, res) => {
+  try {
+    const fecha_inicio = new Date(req.query.fecha_inicio)
+    const fecha_fin = new Date(req.query.fecha_fin)
+    if (!fecha_inicio || isNaN(fecha_inicio.getTime()) || !fecha_fin || isNaN(fecha_fin.getTime())) {
+      return res.status(400).json({ error: 'Las fechas proporcionadas son inválidas' })
+    }
+    const rows = await getQuejasByName(fecha_inicio, fecha_fin)
+    const data = rows.map(row => ({
+      persona: row.persona,
+      total_quejas: row.total_quejas
+    }))
+    res.status(200).json(data)
+  } catch (error) {
+    console.error('Error de servidor :(', error)
+    res.status(500).send('Error de servidor :/')
+  }
+})
+
+app.get('/quejasbyfood', async (req, res) => {
+  try {
+    const fecha_inicio = new Date(req.query.fecha_inicio)
+    const fecha_fin = new Date(req.query.fecha_fin)
+    if (!fecha_inicio || isNaN(fecha_inicio.getTime()) || !fecha_fin || isNaN(fecha_fin.getTime())) {
+      return res.status(400).json({ error: 'Las fechas proporcionadas son inválidas' });
+    }
+    res.status(200).json(await getQuejasByFood(fecha_inicio, fecha_fin))
+  } catch (error) {
+    console.error('Error de servidor :(', error)
+    res.status(500).send('Error de servidor :/')
+  }
+})
+
+app.get('/performance', async (req, res) => {
+  try {
+    res.status(200).json(await getEmployeesPerformance())
+  } catch (error) {
+    console.error('Error de servidor :(', error)
+    res.status(500).send('Error de servidor :/')
+  }
+})
+
+app.post('/quejaforfood', async (req, res) => {
+  const { food_id, reason, rating, nit } = req.body
+  try {
+    await insertQuejaforfood(nit, reason, food_id, rating)
+    res.status(200).send('Queja insertada :)')
+  } catch (error) {
+    console.log('Error :(', error)
     res.status(500).send('Error de servidor :/')
   }
 })
