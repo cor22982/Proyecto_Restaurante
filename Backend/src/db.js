@@ -82,19 +82,26 @@ export async function insertMesaSesion(mesaid, sesionid) {
 
 export async function insertQueja(nit, reason, employee_id, food_id, rating) {
   try {
-    let result
+    let result;
     if (food_id === '' && employee_id !== '') {
       result = await conn.query('INSERT INTO queja (nit_cliente, motivo, calificacion, personal_id) VALUES ($1, $2, $3, $4);', [nit, reason, parseInt(rating), parseInt(employee_id)]);
     }
     if (employee_id === '' && food_id !== '') {
-      result = await conn.query('INSERT INTO queja (nit_cliente, motivo, comida, calificacion) VALUES ($1, $2, $3, $4);', [nit, reason, parseInt(food_id), parseInt(rating)])
+      // Check if food_id is not an empty string and is a valid integer
+      if (!isNaN(food_id)) {
+        result = await conn.query('INSERT INTO queja (nit_cliente, motivo, comida, calificacion) VALUES ($1, $2, $3, $4);', [nit, reason, parseInt(food_id), parseInt(rating)]);
+      } else {
+        console.error('Invalid food_id:', food_id);
+        // Handle the error or throw an exception
+      }
     }
-    return result.rows
+    return result.rows;
   } catch (error) {
     console.error('Error inserting complaint:', error);
-    throw error
+    throw error;
   }
 }
+
 
 
 
