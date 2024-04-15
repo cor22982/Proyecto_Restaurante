@@ -83,10 +83,10 @@ export async function insertMesaSesion(mesaid, sesionid) {
 export async function insertQueja(nit, reason, employee_id, food_id, rating) {
   try {
     let result
-    if (food_id === '') {
+    if (food_id === '' && employee_id !== '') {
       result = await conn.query('INSERT INTO queja (nit_cliente, motivo, calificacion, personal_id) VALUES (?, ?, ?, ?);', [nit, reason, rating, employee_id]);
     }
-    if (employee_id === '') {
+    if (employee_id === '' && food_id !== '') {
       result = await conn.query('INSERT INTO queja (nit_cliente, motivo, comida, calificacion) VALUES (?, ?, ?, ?);', [nit, reason, food_id, rating])
     }
     return result
