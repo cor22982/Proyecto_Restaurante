@@ -80,23 +80,23 @@ export async function insertMesaSesion(mesaid, sesionid) {
 }
 
 
-export async function insertQueja(nit, reason, employee_id, food_id, rating){
-  let result
-  try{
-    if (food_id ===''){
-      result = await conn.query('insert into queja (nit_cliente, motivo, personal_id, calificacion) values (?, ?, ?,?);',[nit, reason, parseInt(employee_id), parseInt(rating)])
-    }
-    else{
-      result = await conn.query('insert into queja (nit_cliente, motivo, comida_id, calificacion) values (?, ?, ?, ?);',[nit, reason, parseInt(food_id), parseInt(rating)])
+export async function insertQueja(nit, reason, employee_id, food_id, rating) {
+  try {
+    let result
+    if (food_id === '') {
+      result = await conn.query('INSERT INTO queja (nit_cliente, motivo, calificacion) VALUES (?, ?, ?);', [nit, reason, rating]);
+    } else if (employee_id === '') {
+      result = await conn.query('INSERT INTO queja (nit_cliente, motivo, comida_id, calificacion) VALUES (?, ?, ?, ?);', [nit, reason, food_id, rating])
+    } else {
+      result = await conn.query('INSERT INTO queja (nit_cliente, motivo, personal_id, calificacion) VALUES (?, ?, ?, ?);', [nit, reason, parseInt(employee_id), rating])
     }
     return result
+  } catch (error) {
+    console.error('Error inserting complaint:', error);
+    throw error
+  }
+}
 
-  }
-  catch(error){
-    console.log(error)
-  }
-  
-} 
 
 
 export async function getQuejasbyFoodID(id){
