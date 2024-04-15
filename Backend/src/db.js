@@ -246,4 +246,8 @@ export async function getHorarios(fecha_inicio, fecha_fin){
   return result
 }
 
+export async function getTimeAVG(fecha_inicio, fecha_fin){
+  const result = await conn.query('select fechas.personas, avg(extract(epoch from (fechas.fecha_fin - fechas.fecha_inicio))/60) from (select * from sesion join (select ms.sesion, sum(m.capacidad) as personas from mesas m join mesas_sesion ms on ms.mesa = m.id group by ms.sesion) as cant on sesion.id = cant.sesion where sesion.fecha_fin is not null) as fechas where DATE(fechas.fecha_inicio) BETWEEN $1 and $2 and DATE(fechas.fecha_fin) BETWEEN $3 and $4 group by fechas.personas', [fecha_inicio.toISOString(), fecha_fin.toISOString(), fecha_inicio.toISOString(), fecha_fin.toISOString()])
+  return result
+}
 

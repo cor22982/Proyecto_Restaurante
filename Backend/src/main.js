@@ -34,7 +34,8 @@ import {
   terminarodencocina  ,
   terminarodenbar,
   getTiemposDeEspera,
-  getHorarios
+  getHorarios,
+  getTimeAVG
 
 // eslint-disable-next-line import/extensions
 } from './db.js'
@@ -514,6 +515,21 @@ app.get('/horario', async (req, res) => {
       return res.status(400).json({ error: 'Las fechas proporcionadas son inválidas' });
     }
     res.status(200).json(await getHorarios(fecha_inicio, fecha_fin))
+  } catch (error) {
+    console.error('Error de servidor :(', error)
+    res.status(500).send('Error de servidor :/')
+  }
+})
+
+app.get('/tiempoPromedio', async (req, res) => {
+  try {
+  
+    const fecha_inicio = new Date(req.query.fecha_inicio)
+    const fecha_fin = new Date(req.query.fecha_fin)
+    if (!fecha_inicio || isNaN(fecha_inicio.getTime()) || !fecha_fin || isNaN(fecha_fin.getTime())) {
+      return res.status(400).json({ error: 'Las fechas proporcionadas son inválidas' });
+    }
+    res.status(200).json(await getTimeAVG(fecha_inicio, fecha_fin))
   } catch (error) {
     console.error('Error de servidor :(', error)
     res.status(500).send('Error de servidor :/')
