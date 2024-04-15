@@ -531,6 +531,11 @@ app.get('/tiempoPromedio', async (req, res) => {
     if (!fecha_inicio || isNaN(fecha_inicio.getTime()) || !fecha_fin || isNaN(fecha_fin.getTime())) {
       return res.status(400).json({ error: 'Las fechas proporcionadas son inválidas' });
     }
+    const rows = await getQuejasByName(fecha_inicio, fecha_fin)
+    const data = rows.map(row => ({
+      personas: row.persona,
+      avg: row.total_quejas
+    }))
     res.status(200).json(await getTimeAVG(fecha_inicio, fecha_fin))
   } catch (error) {
     console.error('Error de servidor :(', error)
@@ -543,13 +548,13 @@ app.get('/quejasbyname', async (req, res) => {
     const fecha_inicio = new Date(req.query.fecha_inicio)
     const fecha_fin = new Date(req.query.fecha_fin)
     if (!fecha_inicio || isNaN(fecha_inicio.getTime()) || !fecha_fin || isNaN(fecha_fin.getTime())) {
-      return res.status(400).json({ error: 'Las fechas proporcionadas son inválidas' });
+      return res.status(400).json({ error: 'Las fechas proporcionadas son inválidas' })
     }
-    const rows = await getQuejasByName(fecha_inicio, fecha_fin);
+    const rows = await getQuejasByName(fecha_inicio, fecha_fin)
     const data = rows.map(row => ({
       persona: row.persona,
       total_quejas: row.total_quejas
-    }));
+    }))
     res.status(200).json(data)
   } catch (error) {
     console.error('Error de servidor :(', error)
