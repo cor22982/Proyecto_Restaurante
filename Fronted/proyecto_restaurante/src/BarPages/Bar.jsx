@@ -33,12 +33,40 @@ const Bar = () => {
     }
   }
 
+  const deletebebida = async () => {
+    console.table(bebida)
+    const fetchOptions = {
+      method: 'DELETE',
+      body: JSON.stringify(bebida),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const response = await fetch('https://cocina.web05.lol/deleteordenbar', fetchOptions);  
+    if (response.ok){
+      setErrorMessage('Se ha terminado esta bebida')
+      return
+    }
+    setErrorMessage('No se ha logrado notificar su preparacion')
+  }
+
   useEffect ( () => {
     getbebida()
   },[]) 
 
 
-  const handleClick = async (bebida,cuenta) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      if (bebida.bebidaid !== '' && bebida.cuentaid !== '') {
+        await deletebebida();
+        await getbebida();
+      }
+    };
+  
+    fetchData();
+  }, [bebida]);
+  
+  const handleClick = async (bebida, cuenta) => {
     setValue({
       bebidaid: bebida,
       cuentaid: cuenta

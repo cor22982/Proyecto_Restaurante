@@ -68,6 +68,7 @@ const Cocinero = () => {
       platoid: plato,
       cuentaid: cuenta
     });
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     await deletecomida();
     await getcomida()
   };

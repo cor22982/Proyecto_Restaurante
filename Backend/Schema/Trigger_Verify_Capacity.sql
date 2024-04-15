@@ -125,6 +125,6 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE OR REPLACE TRIGGER delete_comida_for_orden
-AFTER DELETE ON orden_cocina
+AFTER DELETE ON orden_bar
 FOR EACH ROW
 EXECUTE FUNCTION delete_comida();
