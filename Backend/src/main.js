@@ -32,7 +32,8 @@ import {
   getpricewithoutpropina,
   terminarcuenta,
   terminarodencocina  ,
-  terminarodenbar
+  terminarodenbar,
+  getTiemposDeEspera
 
 // eslint-disable-next-line import/extensions
 } from './db.js'
@@ -477,6 +478,28 @@ app.delete('/deleteordenbar', async (req, res) =>{
     console.error('Error de servidor :(', e)
     res.status(500)
     res.send({error: 'Error de servidor:('})
+  }
+})
+
+app.get('/TiemposDeEspera', async (req, res) => {
+  try {
+  
+    const fecha_inicio = new Date(req.query.fecha_inicio);
+    const fecha_fin = new Date(req.query.fecha_fin);
+
+
+    if (!fecha_inicio || isNaN(fecha_inicio.getTime()) || !fecha_fin || isNaN(fecha_fin.getTime())) {
+      return res.status(400).json({ error: 'Las fechas proporcionadas son inválidas' });
+    }
+
+    const tiemposDeEspera = await getTiemposDeEspera(fecha_inicio, fecha_fin);
+
+
+    res.status(200).json(tiemposDeEspera);
+  } catch (error) {
+
+    console.error('Error de servidor :(', error);
+    res.status(500).send('Error de servidor :/');
   }
 })
 
