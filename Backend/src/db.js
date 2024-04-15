@@ -103,8 +103,15 @@ export async function insertQueja(nit, reason, employee_id, food_id, rating) {
 }
 
 export async function insertQuejaforfood(nit, reason, food_id, rating){
-  const result = await conn.query('insert into queja (nit_cliente, motivo, comida, calificacion) values (?, ?, ?, ?);',[nit,reason,parseInt(food_id),parseInt(rating)])
-  return result
+  try{
+    const result = await conn.query('insert into queja (nit_cliente, motivo, comida, calificacion) values (?, ?, ?, ?);',[nit,reason,parseInt(food_id),parseInt(rating)])
+    return result
+  }
+  catch(error){
+    console.log(error)
+    throw error
+  }
+  
 }
 
 export async function insertQuejaforemployee(nit, reason, employee_id, rating){
