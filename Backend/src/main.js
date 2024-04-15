@@ -38,7 +38,9 @@ import {
   getTimeAVG,
   getQuejasByName,
   getQuejasByFood,
-  getEmployeesPerformance
+  getEmployeesPerformance,
+  insertQuejaforfood,
+  insertQuejaforemployee
 
 // eslint-disable-next-line import/extensions
 } from './db.js'
@@ -586,6 +588,17 @@ app.get('/performance', async (req, res) => {
     res.status(200).json(await getEmployeesPerformance())
   } catch (error) {
     console.error('Error de servidor :(', error)
+    res.status(500).send('Error de servidor :/')
+  }
+})
+
+app.post('/quejaforfood', async (req, res) => {
+  const { food_id, reason, rating, nit } = req.body
+  try {
+    await insertQuejaforfood(nit, reason, food_id, rating)
+    res.status(200).send('Queja insertada :)')
+  } catch (error) {
+    console.log('Error :(', error)
     res.status(500).send('Error de servidor :/')
   }
 })
