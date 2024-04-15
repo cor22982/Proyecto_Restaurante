@@ -257,3 +257,8 @@ export async function getTimeAVG(fecha_inicio, fecha_fin){
   return result
 }
 
+
+export async function getQuejasByName(fecha_inicio, fecha_fin){
+  const result = await conn.query('SELECT p.nombre AS persona, COUNT(q.id) AS total_quejas FROM queja q JOIN personal p ON q.id_personal = p.id WHERE q.fecha_queja BETWEEN $1 AND $2 GROUP BY p.nombre ORDER BY total_quejas DESC;', [fecha_inicio.toISOString(), fecha_fin.toISOString()])
+  return result
+}
