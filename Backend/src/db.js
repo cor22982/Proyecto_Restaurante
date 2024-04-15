@@ -103,7 +103,7 @@ export async function insertQueja(nit, reason, employee_id, food_id, rating) {
 }
 
 export async function insertQuejaforfood(nit, reason, food_id, rating){
-  const result = await conn.query('insert into queja (nit_cliente, motivo, comida, calificacion) values ($1,$2,$3,$4);',[nit,reason,parseInt(food_id),parseInt(rating)])
+  const result = await conn.query('insert into queja (nit_cliente, motivo, comida, calificacion) values (?, ?, ?, ?);',[nit,reason,parseInt(food_id),parseInt(rating)])
   return result
 }
 
