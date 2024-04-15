@@ -350,6 +350,7 @@ app.post('/queja' , async (req, res) => {
     res.status(200).send(await insertQueja(nit, reason, employee_id, food_id, rating))
   }
   catch(e){
+    console.log('Error :(', e)
     res.status(500).send('Error de servidor :/')
   }
 
