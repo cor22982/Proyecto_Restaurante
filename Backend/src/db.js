@@ -242,8 +242,14 @@ export async function getTiemposDeEspera(fecha_inicio, fecha_fin){
 }
 
 export async function getHorarios(fecha_inicio, fecha_fin){
-  const result = await conn.query('SELECT EXTRACT(HOUR FROM cc.fecha_pedido) AS hora, COUNT(*) AS total_pedidos FROM cuenta_comida cc WHERE cc.fecha_pedido BETWEEN $1 AND $2 GROUP BY hora ORDER BY total_pedidos DESC', [fecha_inicio.toISOString(), fecha_fin.toISOString()])
-  return result
+  try{
+    const result = await conn.query('SELECT EXTRACT(HOUR FROM cc.fecha_pedido) AS hora, COUNT(*) AS total_pedidos FROM cuenta_comida cc WHERE cc.fecha_pedido BETWEEN $1 AND $2 GROUP BY hora ORDER BY total_pedidos DESC', [fecha_inicio.toISOString(), fecha_fin.toISOString()])
+    return result
+  }
+  catch(error){
+    console.log(error)
+  }
+  
 }
 
 
