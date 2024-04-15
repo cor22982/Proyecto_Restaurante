@@ -747,6 +747,7 @@ fsadfassafsad	Matat	440545
 sdfasdf	dsfasfasf	42342423
 baticueva	HolaAdios	23445453
 jdsjdwjd	batman	4837462
+5ta Calle B	Nery Rodas	20201110
 \.
 
 
@@ -805,7 +806,6 @@ COPY public.comidas (id, nombre, tipo, precio, descripcion) FROM stdin;
 
 COPY public.cuenta (id, total, esta_abierta, sesion, cliente, fecha_inicio, fecha_fin) FROM stdin;
 14	41.354	t	11	\N	\N	\N
-15	44.2405	t	12	\N	\N	\N
 22	2.24775	t	18	\N	\N	\N
 23	0	t	18	\N	\N	\N
 8	61.30675	f	10	\N	\N	2024-04-14 06:22:50.482766
@@ -824,6 +824,8 @@ COPY public.cuenta (id, total, esta_abierta, sesion, cliente, fecha_inicio, fech
 10	15.32675	f	10	23445453	2024-04-14 11:02:12.289191	2024-04-15 01:35:34.911766
 12	34.33675	t	10	202020500	\N	\N
 27	375.981	f	20	4837462	\N	2024-04-15 01:38:06.436841
+15	44.2405	f	12	20201110	\N	2024-04-15 15:16:38.844547
+28	0	t	21	\N	\N	\N
 \.
 
 
@@ -927,6 +929,7 @@ COPY public.forma_de_pago (id, monto, forma, cliente, cuenta) FROM stdin;
 15	NaN	\N	23445453	10
 16	300	tarjeta	4837462	27
 17	26.939999999999998	efectivo	4837462	27
+18	44.2405	tarjeta	20201110	15
 \.
 
 
@@ -1059,6 +1062,7 @@ COPY public.sesion (id, mesero_asociado, monto_total, fecha, propina, fecha_inic
 18	8	29.97	2024-04-14	4.4955	2024-04-14 22:15:14.916697	2024-04-14 22:18:40.663537
 19	4	0	2024-04-14	0	2024-04-14 16:54:31.585581	\N
 20	11	326.94	2024-04-15	49.041	2024-04-15 01:35:53.235632	2024-04-15 01:38:15.966123
+21	4	0	2024-04-15	0	2024-04-15 17:23:39.863951	\N
 \.
 
 
@@ -1080,7 +1084,7 @@ SELECT pg_catalog.setval('public.comidas_id_seq', 41, true);
 -- Name: cuenta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.cuenta_id_seq', 27, true);
+SELECT pg_catalog.setval('public.cuenta_id_seq', 28, true);
 
 
 --
@@ -1094,7 +1098,7 @@ SELECT pg_catalog.setval('public.encuesta_id_seq', 8, true);
 -- Name: forma_de_pago_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.forma_de_pago_id_seq', 17, true);
+SELECT pg_catalog.setval('public.forma_de_pago_id_seq', 18, true);
 
 
 --
@@ -1136,7 +1140,7 @@ SELECT pg_catalog.setval('public.queja_id_seq', 10, true);
 -- Name: sesion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sesion_id_seq', 20, true);
+SELECT pg_catalog.setval('public.sesion_id_seq', 21, true);
 
 
 --
