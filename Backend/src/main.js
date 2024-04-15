@@ -545,7 +545,12 @@ app.get('/quejasbyname', async (req, res) => {
     if (!fecha_inicio || isNaN(fecha_inicio.getTime()) || !fecha_fin || isNaN(fecha_fin.getTime())) {
       return res.status(400).json({ error: 'Las fechas proporcionadas son inválidas' });
     }
-    res.status(200).json(await getQuejasByName(fecha_inicio, fecha_fin))
+    const rows = await getQuejasByName(fecha_inicio, fecha_fin);
+    const data = rows.map(row => ({
+      persona: row.persona,
+      total_quejas: row.total_quejas
+    }));
+    res.status(200).json(data)
   } catch (error) {
     console.error('Error de servidor :(', error)
     res.status(500).send('Error de servidor :/')
