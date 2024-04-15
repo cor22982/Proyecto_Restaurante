@@ -36,7 +36,8 @@ import {
   getTiemposDeEspera,
   getHorarios,
   getTimeAVG,
-  getQuejasByName
+  getQuejasByName,
+  getQuejasByFood
 
 // eslint-disable-next-line import/extensions
 } from './db.js'
