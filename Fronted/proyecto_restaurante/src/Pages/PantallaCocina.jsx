@@ -41,7 +41,7 @@ const PantallaCocina = () => {
       </div>
       <div className='square-box'>
         <Cocinero></Cocinero>
-      </div>
+      </div> 
     </div>
   ) ;
 }

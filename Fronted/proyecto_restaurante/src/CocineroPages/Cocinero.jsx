@@ -4,7 +4,7 @@ import '../MeseroPages/Titulo1.css';
 import TablaBotones from '../Components/TablaBotones';
 import CheckboxCustom from '../Components/CheckboxCustom';
 import { useEffect, useState } from 'react';
-const Cocinero = () => {
+const Cocinero = () => { 
 
   const [plato, setPlato] = useState({platoid: '', cuentaid: ''})
   const [errorMessage, setErrorMessage] = useState('')
