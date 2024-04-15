@@ -1,5 +1,5 @@
 import '../MeseroPages/Titulo1.css'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { faIdCard, faExclamationTriangle, faUser, faBowlFood} from '@fortawesome/free-solid-svg-icons';
 import TextInputSmall from '../Components/TextInputSmall';
 import TextAreaSmall from '../Components/TextAreaSmall';
@@ -18,11 +18,26 @@ const Queja = () => {
     })
   }
 
-  const enviarqueja = () => {
-    console.table(data)
-  }
+
   const clickcheck = (value) => {
     setValue('rating',value)  
+  }
+
+  const sendQueja = async () => {
+    const fetchOptions = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const response = await fetch('https://cocina.web05.lol/quejas', fetchOptions);
+    if (response.ok) {
+      setErrorMessage('Se envio la queja correctamente')
+      return;
+    }
+    setErrorMessage('Error Enviar queja')
   }
   return (
     <div className='sizesquare'>
@@ -99,9 +114,15 @@ const Queja = () => {
       </div>
       <ButtonSmall 
         name='ENTREGAR'
-        onclick={enviarqueja}></ButtonSmall>
+        onclick={sendQueja}></ButtonSmall>
       
-
+      {
+        errorMessage !== '' ? (
+          <div className='error-message' onClick={() => setErrorMessage('')}>
+            {errorMessage}
+          </div>
+        ) : null
+      }
       
     </div>
   );
