@@ -83,7 +83,7 @@ export async function insertMesaSesion(mesaid, sesionid) {
 export async function insertQueja(nit, reason, employee_id, food_id, rating){
   let result
   try{
-    if (food_id = ''){
+    if (food_id ===''){
       result = await conn.query('insert into queja (nit_cliente, motivo, personal_id, calificacion) values (?, ?, ?,?);',[nit, reason, parseInt(employee_id), parseInt(rating)])
     }
     else{
