@@ -1,0 +1,404 @@
+
+5050520 Esta horrible 5 1 5
+Error inserting complaint: TypeError: Cannot read properties of undefined (reading 'rows')
+    at insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:98:19)
+    at file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:11
+    at Layer.handle [as handle_request] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/layer.js:95:5)
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/index.js:280:10)
+    at validateRequest (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:56:10)
+Error :( TypeError: Cannot read properties of undefined (reading 'rows')
+    at insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:98:19)
+    at file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:11
+    at Layer.handle [as handle_request] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/layer.js:95:5)
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/index.js:280:10)
+    at validateRequest (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:56:10)
+
+> backend@1.0.0 start
+> node ./src/main.js
+
+Server listening at http://127.0.0.1:3000
+5050520 Esta horrible 5 1 5
+23445453 Me golpeo bien duro 8 1 5
+
+> backend@1.0.0 start
+> node ./src/main.js
+
+Server listening at http://127.0.0.1:3000
+success { id: 4, rol: 'mesero' }
+success { id: 2, rol: 'admin' }
+success false
+body {
+  username: 'adios',
+  password: '6e6e2ddb6346ce143d19d79b3358c16a',
+  rol: 'mesero'
+}
+success { id: 12, rol: 'mesero' }
+body {
+  username: 'como',
+  password: 'ba5c7624c65e30bb05fa2450eb717b77',
+  rol: 'cheff'
+}
+success { id: 13, rol: 'cheff' }
+success { id: 12, rol: 'mesero' }
+Invalid token TokenExpiredError: jwt expired
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/jsonwebtoken/verify.js:97:14)
+    at module.exports [as verify] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/jsonwebtoken/verify.js:101:10)
+    at validateToken (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/jwt.js:11:16)
+    at file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:82:7
+    at Layer.handle [as handle_request] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/layer.js:95:5)
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/index.js:284:15 {
+  expiredAt: 2024-04-13T00:56:44.000Z
+}
+Invalid token TokenExpiredError: jwt expired
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/jsonwebtoken/verify.js:97:14)
+    at module.exports [as verify] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/jsonwebtoken/verify.js:101:10)
+    at validateToken (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/jwt.js:11:16)
+    at file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:82:7
+    at Layer.handle [as handle_request] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/layer.js:95:5)
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/index.js:284:15 {
+  expiredAt: 2024-04-13T00:56:44.000Z
+}
+success { id: 4, rol: 'mesero' }
+success { id: 2, rol: 'admin' }
+Invalid token TokenExpiredError: jwt expired
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/jsonwebtoken/verify.js:97:14)
+    at module.exports [as verify] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/jsonwebtoken/verify.js:101:10)
+    at validateToken (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/jwt.js:11:16)
+    at file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:82:7
+    at Layer.handle [as handle_request] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/layer.js:95:5)
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/index.js:284:15 {
+  expiredAt: 2024-04-13T00:57:17.000Z
+}
+Invalid token TokenExpiredError: jwt expired
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/jsonwebtoken/verify.js:97:14)
+    at module.exports [as verify] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/jsonwebtoken/verify.js:101:10)
+    at validateToken (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/jwt.js:11:16)
+    at file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:82:7
+    at Layer.handle [as handle_request] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/layer.js:95:5)
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/express/lib/router/index.js:284:15 {
+  expiredAt: 2024-04-13T00:57:17.000Z
+}
+success { id: 4, rol: 'mesero' }
+success false
+success { id: 12, rol: 'mesero' }
+success { id: 2, rol: 'admin' }
+success { id: 4, rol: 'mesero' }
+success { id: 2, rol: 'admin' }
+success { id: 2, rol: 'admin' }
+success { id: 2, rol: 'admin' }
+202020500 Había carne humana  1 1
+success { id: 2, rol: 'admin' }
+success { id: 2, rol: 'admin' }
+555500060 Me golpearon con la bandeja 3  5
+Error inserting complaint: error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:99:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+Error :( error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:99:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+555500060 Me golpearon con la bandeja 3 1 5
+555500060 Me golpearon con la bandeja 3  5
+Error inserting complaint: error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:99:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+Error :( error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:99:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+555500060 Me golpearon con la bandeja  3 5
+555500060 Me golpearon con la bandeja 2  5
+Error inserting complaint: error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:99:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+Error :( error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:99:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+10605650 Había un pollo vivo 2  4
+Error inserting complaint: error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:99:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+Error :( error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:99:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+10605650 Había un pollo vivo  1 4
+5050520 me golpeo 3 1 4
+5050520 me golpeo  1 4
+5050520 me golpeo 2  4
+Error inserting complaint: error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:99:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+Error :( error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:99:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+5050520 me golpeo 2  4
+Error inserting complaint: error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:99:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+Error :( error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:99:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
