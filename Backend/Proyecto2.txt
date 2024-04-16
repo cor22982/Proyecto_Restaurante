@@ -402,3 +402,152 @@ Error :( error: invalid input syntax for type integer: "NaN"
   line: '320',
   routine: 'pg_strtoint32'
 }
+
+> backend@1.0.0 start
+> node ./src/main.js
+
+Server listening at http://127.0.0.1:3000
+5050520 me golpeo 2  4
+Error inserting complaint: error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:102:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+Error :( error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:102:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+5050520 me golpeo 2 2 4
+5050520 me golpeo  2 4
+5050520 me golpeo 4 2 4
+5050520 me golpeo 4  4
+Error inserting complaint: error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:102:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+Error :( error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:102:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+5050520 me golpeo 4 undefined 4
+Error inserting complaint: error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:102:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
+Error :( error: invalid input syntax for type integer: "NaN"
+    at /home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/node_modules/pg/lib/client.js:526:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async insertQueja (file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/db.js:102:16)
+    at async file:///home/ubuntu/proyecto2/Proyecto_Restaurante/Backend/src/main.js:356:5 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'numutils.c',
+  line: '320',
+  routine: 'pg_strtoint32'
+}
