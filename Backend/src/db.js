@@ -86,6 +86,9 @@ export async function insertQueja(nit, reason, employee_id, food_id, rating) {
     if (food_id === '' && employee_id !== '') {
       if (!isNaN(employee_id)) {
         result = await conn.query('INSERT INTO queja (nit_cliente, motivo, calificacion, personal_id) VALUES ($1, $2, $3, $4);', [nit, reason, parseInt(rating), parseInt(employee_id)]);
+      }else {
+        console.error('Invalid employeeid:', employee_id);
+        // Handle the error or throw an exception
       }
       
     }
