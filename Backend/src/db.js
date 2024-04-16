@@ -92,7 +92,7 @@ export async function insertQueja(nit, reason, employee_id, food_id, rating) {
       }
       
     }
-    if (employee_id === '' && food_id !== '') {
+    else if (employee_id === '' && food_id !== '') {
       // Check if food_id is not an empty string and is a valid integer
       if (!isNaN(food_id)) {
         result = await conn.query('INSERT INTO queja (nit_cliente, motivo, comida, calificacion) VALUES ($1, $2, $3, $4);', [nit, reason, parseInt(food_id), parseInt(rating)]);
@@ -101,7 +101,7 @@ export async function insertQueja(nit, reason, employee_id, food_id, rating) {
         // Handle the error or throw an exception
       }
     }
-    else {
+    else  {
       result = await conn.query('INSERT INTO queja (nit_cliente, motivo, personal_id, comida, calificacion) VALUES ($1, $2, $3, $4, $5);', [nit, reason,parseInt(employee_id), parseInt(food_id), parseInt(rating)]);
     }
     return result.rows;
