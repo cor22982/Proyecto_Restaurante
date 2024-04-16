@@ -243,7 +243,7 @@ export async function getBarOrders(){
     join 
       comidas on orden_bar.bebida = comidas.id 
     JOIN 
-      cuenta_comida ON cuenta_comida.comida = orden_bar.cuenta_id
+      cuenta_comida ON cuenta_comida.cuenta = orden_bar.cuenta_id
     where 
       DATE(orden_bar.fecha) = CURRENT_DATE 
       order by orden_bar.fecha asc;`)
