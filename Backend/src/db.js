@@ -84,7 +84,10 @@ export async function insertQueja(nit, reason, employee_id, food_id, rating) {
   try {
     let result;
     if (food_id === '' && employee_id !== '') {
-      result = await conn.query('INSERT INTO queja (nit_cliente, motivo, calificacion, personal_id) VALUES ($1, $2, $3, $4);', [nit, reason, parseInt(rating), parseInt(employee_id)]);
+      if (!isNaN(employee_id)) {
+        result = await conn.query('INSERT INTO queja (nit_cliente, motivo, calificacion, personal_id) VALUES ($1, $2, $3, $4);', [nit, reason, parseInt(rating), parseInt(employee_id)]);
+      }
+      
     }
     if (employee_id === '' && food_id !== '') {
       // Check if food_id is not an empty string and is a valid integer
